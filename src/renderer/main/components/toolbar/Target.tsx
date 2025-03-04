@@ -8,16 +8,16 @@ import { t } from '../../../../common/util'
 import each from 'licia/each'
 
 export default observer(function Target() {
-  let deviceOptions: types.PlainObj<string> = {}
-  let deviceDisabled = false
+  let targetOptions: types.PlainObj<string> = {}
+  let targetDisabled = false
   if (!isEmpty(store.targets)) {
-    deviceOptions = {}
+    targetOptions = {}
     each(store.targets, (target) => {
-      deviceOptions[`${target.name} (${target.id})`] = target.id
+      targetOptions[`${target.name} (${target.id})`] = target.id
     })
   } else {
-    deviceOptions[t('deviceNotConnected')] = ''
-    deviceDisabled = true
+    targetOptions[t('targetNotConnected')] = ''
+    targetDisabled = true
   }
 
   return (
@@ -32,9 +32,9 @@ export default observer(function Target() {
       >
         <LunaToolbarSelect
           keyName="target"
-          disabled={deviceDisabled}
+          disabled={targetDisabled}
           value={store.target ? store.target.id : ''}
-          options={deviceOptions}
+          options={targetOptions}
         />
       </LunaToolbar>
     </>

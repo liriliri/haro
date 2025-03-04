@@ -32,7 +32,7 @@ export function showWin() {
     menu: true,
   })
 
-  win.on('close', (e) => {
+  win.on('close', () => {
     win?.hide()
     app.quit()
   })

@@ -21,8 +21,8 @@ function renderApp() {
 
   const container: HTMLElement = document.getElementById('app') as HTMLElement
 
-  let App = lazy(() => import('./main/App.js') as Promise<any>)
-  let title = 'HARO'
+  const App = lazy(() => import('./main/App.js') as Promise<any>)
+  const title = 'HARO'
 
   preload.setTitle(title)
 
