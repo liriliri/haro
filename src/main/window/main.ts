@@ -1,0 +1,53 @@
+import { app, BrowserWindow } from 'electron'
+import { getMainStore, getSettingsStore } from '../lib/store'
+import { handleEvent } from 'share/main/lib/util'
+import * as window from 'share/main/lib/window'
+import log from 'share/common/log'
+import once from 'licia/once'
+
+const logger = log('mainWin')
+
+const store = getMainStore()
+const settingsStore = getSettingsStore()
+
+let win: BrowserWindow | null = null
+
+export function showWin() {
+  logger.info('show')
+
+  if (win) {
+    win.focus()
+    return
+  }
+
+  initIpc()
+
+  win = window.create({
+    name: 'main',
+    minWidth: 960,
+    minHeight: 640,
+    ...store.get('bounds'),
+    maximized: store.get('maximized'),
+    onSavePos: () => window.savePos(win, store, true),
+    menu: true,
+  })
+
+  win.on('close', (e) => {
+    win?.hide()
+    app.quit()
+  })
+
+  window.loadPage(win)
+}
+
+const initIpc = once(() => {
+  handleEvent('setMainStore', (name, val) => store.set(name, val))
+  handleEvent('getMainStore', (name) => store.get(name))
+  store.on('change', (name, val) => {
+    window.sendAll('changeMainStore', name, val)
+  })
+  handleEvent('setSettingsStore', (name, val) => {
+    settingsStore.set(name, val)
+  })
+  handleEvent('getSettingsStore', (name) => settingsStore.get(name))
+})
