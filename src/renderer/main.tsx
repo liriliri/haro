@@ -9,6 +9,7 @@ import 'share/renderer/main.scss'
 import './icon.css'
 import 'luna-toolbar/css'
 import 'luna-tab/css'
+import 'luna-notification/css'
 
 if (!isDev()) {
   log.setLevel('info')
