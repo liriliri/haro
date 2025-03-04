@@ -4,6 +4,11 @@ import hotKey from 'licia/hotKey'
 import log from 'share/common/log'
 import { i18n } from '../common/util'
 import { isDev, getPlatform } from 'share/common/util'
+import './main.scss'
+import 'share/renderer/main.scss'
+import './icon.css'
+import 'luna-toolbar/css'
+import 'luna-tab/css'
 
 if (!isDev()) {
   log.setLevel('info')

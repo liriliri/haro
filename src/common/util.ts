@@ -4,6 +4,7 @@ import zhCN from './langs/zh-CN.json'
 
 const langs = {
   'zh-CN': zhCN,
+  'en-US': zhCN,
 }
 
 export const i18n = new I18n('zh-CN', langs)

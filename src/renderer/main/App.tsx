@@ -1,3 +1,9 @@
+import Toolbar from './components/toolbar/Toolbar'
+
 export default function () {
-  return <div>Hello world</div>
+  return (
+    <>
+      <Toolbar />
+    </>
+  )
 }
