@@ -1,0 +1,11 @@
+@use './theme' as *;
+
+.luna-notification {
+  padding-top: 40px;
+  z-index: $z-index-popup-base;
+}
+
+.luna-notification-item {
+  border-radius: 4px;
+  padding: 5px 10px;
+}

@@ -1,4 +1,8 @@
 {
   "targetNotConnected": "未连接设备",
-  "overview": "概览"
+  "overview": "概览",
+  "name": "名称",
+  "brand": "品牌",
+  "model": "型号",
+  "copied": "已复制"
 }

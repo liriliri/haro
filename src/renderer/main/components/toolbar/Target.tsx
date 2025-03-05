@@ -13,7 +13,7 @@ export default observer(function Target() {
   if (!isEmpty(store.targets)) {
     targetOptions = {}
     each(store.targets, (target) => {
-      targetOptions[`${target.name} (${target.id})`] = target.id
+      targetOptions[`${target.name} (${target.key})`] = target.key
     })
   } else {
     targetOptions[t('targetNotConnected')] = ''
@@ -33,7 +33,7 @@ export default observer(function Target() {
         <LunaToolbarSelect
           keyName="target"
           disabled={targetDisabled}
-          value={store.target ? store.target.id : ''}
+          value={store.target ? store.target.key : ''}
           options={targetOptions}
         />
       </LunaToolbar>

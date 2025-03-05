@@ -24,7 +24,7 @@ class Store extends BaseStore {
   }
   selectTarget = (target: string | ITarget | null) => {
     if (isStr(target)) {
-      const d = find(this.targets, ({ id }) => id === target)
+      const d = find(this.targets, ({ key }) => key === target)
       if (d) {
         this.target = d
       }
@@ -48,7 +48,7 @@ class Store extends BaseStore {
       if (!this.target) {
         this.selectTarget(targets[0])
       } else {
-        const target = find(targets, ({ id }) => id === this.target!.id)
+        const target = find(targets, ({ key }) => key === this.target!.key)
         if (!target) {
           this.selectTarget(targets[0])
         }
