@@ -41,6 +41,9 @@ export default observer(function Overview() {
           {item(t('brand'), overview.brand)}
           {item(t('model'), overview.model, 'model')}
         </div>
+        <div className={Style.row}>
+          {item(t('serialNum'), overview.serialNum, 'serial-number')}
+        </div>
       </div>
     )
   }

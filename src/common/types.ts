@@ -6,4 +6,4 @@ export interface ITarget {
 export type IpcGetTargets = () => Promise<ITarget[]>
 export type IpcGetOverview = (
   connectKey: string
-) => Promise<{ name: string; brand: string; model: string }>
+) => Promise<{ name: string; brand: string; model: string; serialNum: string }>

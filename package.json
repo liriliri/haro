@@ -43,7 +43,7 @@
     "eslint-config-prettier": "^10.0.2",
     "fs-extra": "^11.3.0",
     "globals": "^16.0.0",
-    "hdckit": "^0.2.1",
+    "hdckit": "^0.3.0",
     "licia": "^1.46.0",
     "luna-notification": "^0.3.3",
     "luna-tab": "^0.3.4",
