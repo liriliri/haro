@@ -7,5 +7,6 @@
   "copied": "已复制",
   "serialNum": "序列号",
   "ohosVersion": "鸿蒙版本",
-  "kernelVersion": "内核版本"
+  "kernelVersion": "内核版本",
+  "targetRefreshed": "设备已刷新"
 }

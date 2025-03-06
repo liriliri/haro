@@ -6,6 +6,8 @@ import isEmpty from 'licia/isEmpty'
 import store from '../../store'
 import { t } from '../../../../common/util'
 import each from 'licia/each'
+import ToolbarIcon from 'share/renderer/components/ToolbarIcon'
+import { notify } from 'share/renderer/lib/util'
 
 export default observer(function Target() {
   let targetOptions: types.PlainObj<string> = {}
@@ -35,6 +37,14 @@ export default observer(function Target() {
           disabled={targetDisabled}
           value={store.target ? store.target.key : ''}
           options={targetOptions}
+        />
+        <ToolbarIcon
+          icon="refresh"
+          title={t('refresh')}
+          onClick={async () => {
+            await store.refreshTargets()
+            notify(t('targetRefreshed'), { icon: 'success' })
+          }}
         />
       </LunaToolbar>
     </>
