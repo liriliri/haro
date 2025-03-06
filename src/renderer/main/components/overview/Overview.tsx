@@ -43,6 +43,12 @@ export default observer(function Overview() {
         </div>
         <div className={Style.row}>
           {item(t('serialNum'), overview.serialNum, 'serial-number')}
+          {item(
+            t('ohosVersion'),
+            `OpenHarmony ${target.ohosVersion} (API ${target.sdkVersion})`,
+            'ohos'
+          )}
+          {item(t('kernelVersion'), overview.kernelVersion, 'ohos')}
         </div>
       </div>
     )

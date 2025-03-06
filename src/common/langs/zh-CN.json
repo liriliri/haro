@@ -5,5 +5,7 @@
   "brand": "品牌",
   "model": "型号",
   "copied": "已复制",
-  "serialNum": "序列号"
+  "serialNum": "序列号",
+  "ohosVersion": "鸿蒙版本",
+  "kernelVersion": "内核版本"
 }
