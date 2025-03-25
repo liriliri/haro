@@ -22,6 +22,7 @@ import store from '../../store'
 import { t } from '../../../../common/util'
 import CopyButton from 'share/renderer/components/CopyButton'
 import { copyData } from 'share/renderer/lib/util'
+import { toPng } from '../../lib/util'
 
 export default observer(function Screenshot() {
   const [image, setImage] = useState<{
@@ -42,8 +43,9 @@ export default observer(function Screenshot() {
     download(blob, 'screenshot.jpeg', 'image/jpeg')
   }
 
-  function copy() {
-    copyData(image!.data, 'image/jpeg')
+  async function copy() {
+    const png = await toPng(image!.url)
+    copyData(dataUrl.parse(png)!.data, 'image/png')
   }
 
   async function recapture() {

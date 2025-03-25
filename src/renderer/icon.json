@@ -21,5 +21,6 @@
   "../share/renderer/icon/zoom-out.svg",
   "../share/renderer/icon/original.svg",
   "../share/renderer/icon/reset.svg",
-  "../share/renderer/icon/copy.svg"
+  "../share/renderer/icon/copy.svg",
+  "../share/renderer/icon/check.svg"
 ]
