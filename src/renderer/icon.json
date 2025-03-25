@@ -4,5 +4,12 @@
   "../share/renderer/icon/phone.svg",
   "../share/renderer/icon/model.svg",
   "../share/renderer/icon/info.svg",
-  "../share/renderer/icon/serial-number.svg"
+  "../share/renderer/icon/serial-number.svg",
+  "../share/renderer/icon/remote-controller.svg",
+  "../share/renderer/icon/volume.svg",
+  "../share/renderer/icon/volume-down.svg",
+  "../share/renderer/icon/power.svg",
+  "../share/renderer/icon/circle.svg",
+  "../share/renderer/icon/back.svg",
+  "../share/renderer/icon/square.svg"
 ]

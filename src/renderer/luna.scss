@@ -1,11 +1,20 @@
-@use './theme' as *;
+@use './theme' as theme;
 
 .luna-notification {
   padding-top: 40px;
-  z-index: $z-index-popup-base;
+  z-index: theme.$z-index-popup-base;
 }
 
 .luna-notification-item {
   border-radius: 4px;
   padding: 5px 10px;
+}
+
+.luna-modal {
+  top: 28px;
+  z-index: theme.$z-index-popup-base;
+}
+
+.luna-modal-input {
+  user-select: text !important;
 }

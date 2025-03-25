@@ -1,4 +1,4 @@
-import { IpcGetOverview, IpcGetTargets } from '../../common/types'
+import { IpcGetOverview, IpcGetTargets, IpcInputKey } from '../../common/types'
 import { handleEvent } from 'share/main/lib/util'
 import Hdc, { Client } from 'hdckit'
 import log from 'share/common/log'
@@ -64,6 +64,10 @@ function getPropValue(key: string, str: string) {
   return ''
 }
 
+const inputKey: IpcInputKey = async function (connectKey, keyCode) {
+  await base.shell(connectKey, `uinput -K -d ${keyCode} -u ${keyCode}`)
+}
+
 export async function init() {
   logger.info('init')
 
@@ -73,4 +77,5 @@ export async function init() {
 
   handleEvent('getTargets', getTargets)
   handleEvent('getOverview', getOverview)
+  handleEvent('inputKey', inputKey)
 }
