@@ -10,5 +10,9 @@
   "kernelVersion": "内核版本",
   "targetRefreshed": "设备已刷新",
   "commonErr": "出错了",
-  "remoteController": "遥控器"
+  "remoteController": "遥控器",
+  "processor": "处理器",
+  "unknown": "未知",
+  "memory": "内存",
+  "physicalResolution": "物理分辨率"
 }

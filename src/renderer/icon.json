@@ -11,5 +11,7 @@
   "../share/renderer/icon/power.svg",
   "../share/renderer/icon/circle.svg",
   "../share/renderer/icon/back.svg",
-  "../share/renderer/icon/square.svg"
+  "../share/renderer/icon/square.svg",
+  "../share/renderer/icon/processor.svg",
+  "../share/renderer/icon/memory.svg"
 ]

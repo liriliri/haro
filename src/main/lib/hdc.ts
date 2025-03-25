@@ -47,8 +47,49 @@ const getOverview: IpcGetOverview = async function (connectKey) {
     name: parameters['const.product.name'],
     brand: parameters['const.product.brand'],
     model: parameters['const.product.model'],
+    abi: parameters['const.product.cpu.abilist'],
     serialNum: getPropValue('sn', deviceInfo),
     kernelVersion: kernelVersion.slice(0, kernelVersion.indexOf('#')),
+    processor: getPropValue('deviceTypeName', deviceInfo),
+    ...(await getMemory(connectKey)),
+    ...(await getScreen(connectKey)),
+  }
+}
+
+async function getScreen(connectKey: string) {
+  const screen = await shell(connectKey, 'hidumper -s RenderService -a screen')
+
+  let physicalResolution = ''
+  const physicalResolutionMatch = screen.match(
+    /physical screen resolution: ((\d+)x(\d+))/
+  )
+  if (physicalResolutionMatch) {
+    physicalResolution = physicalResolutionMatch[1]
+  }
+
+  return {
+    physicalResolution,
+  }
+}
+
+async function getMemory(connectKey: string) {
+  const memInfo = await shell(connectKey, 'cat /proc/meminfo')
+  let memTotal = 0
+  let memFree = 0
+
+  const totalMatch = getPropValue('MemTotal', memInfo)
+  let freeMatch = getPropValue('MemAvailable', memInfo)
+  if (!freeMatch) {
+    freeMatch = getPropValue('MemFree', memInfo)
+  }
+  if (totalMatch && freeMatch) {
+    memTotal = parseInt(totalMatch, 10) * 1024
+    memFree = parseInt(freeMatch, 10) * 1024
+  }
+
+  return {
+    memTotal,
+    memUsed: memTotal - memFree,
   }
 }
 

@@ -12,5 +12,8 @@ export type IpcGetOverview = (connectKey: string) => Promise<{
   model: string
   serialNum: string
   kernelVersion: string
+  processor: string
+  abi: string
+  physicalResolution: string
 }>
 export type IpcInputKey = (connectKey: string, keyCode: number) => Promise<void>

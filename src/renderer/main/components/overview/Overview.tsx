@@ -8,6 +8,7 @@ import store from '../../store'
 import copy from 'licia/copy'
 import { PannelLoading } from '../../../components/loading'
 import className from 'licia/className'
+import fileSize from 'licia/fileSize'
 import ToolbarIcon from 'share/renderer/components/ToolbarIcon'
 import LunaToolbar, { LunaToolbarSpace } from 'luna-toolbar/react'
 import RemoteControllerModal from './RemoteControllerModal'
@@ -67,6 +68,15 @@ export default observer(function Overview() {
             'ohos'
           )}
           {item(t('kernelVersion'), overview.kernelVersion, 'ohos')}
+        </div>
+        <div className={Style.row}>
+          {item(
+            t('processor'),
+            `${overview.processor || t('unknown')} (${overview.abi})`,
+            'processor'
+          )}
+          {item(t('physicalResolution'), overview.physicalResolution, 'phone')}
+          {item(t('memory'), fileSize(overview.memTotal as number), 'memory')}
         </div>
       </div>
     )
