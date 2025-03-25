@@ -13,5 +13,13 @@
   "../share/renderer/icon/back.svg",
   "../share/renderer/icon/square.svg",
   "../share/renderer/icon/processor.svg",
-  "../share/renderer/icon/memory.svg"
+  "../share/renderer/icon/memory.svg",
+  "../share/renderer/icon/save.svg",
+  "../share/renderer/icon/rotate-left.svg",
+  "../share/renderer/icon/rotate-right.svg",
+  "../share/renderer/icon/zoom-in.svg",
+  "../share/renderer/icon/zoom-out.svg",
+  "../share/renderer/icon/original.svg",
+  "../share/renderer/icon/reset.svg",
+  "../share/renderer/icon/copy.svg"
 ]

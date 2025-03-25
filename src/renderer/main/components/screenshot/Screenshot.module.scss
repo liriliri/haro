@@ -1,0 +1,9 @@
+.container {
+  :global(.luna-image-viewer) {
+    background-color: var(--color-bg-container-darker);
+  }
+}
+
+.viewer {
+  overflow: hidden;
+}

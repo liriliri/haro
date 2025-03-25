@@ -14,5 +14,6 @@
   "processor": "处理器",
   "unknown": "未知",
   "memory": "内存",
-  "physicalResolution": "物理分辨率"
+  "physicalResolution": "物理分辨率",
+  "screenshot": "截屏"
 }

@@ -1,12 +1,20 @@
-import { IpcGetOverview, IpcGetTargets, IpcInputKey } from '../../common/types'
+import {
+  IpcGetOverview,
+  IpcGetTargets,
+  IpcInputKey,
+  IpcScreencap,
+} from '../../common/types'
 import { handleEvent } from 'share/main/lib/util'
 import Hdc, { Client } from 'hdckit'
 import log from 'share/common/log'
 import map from 'licia/map'
 import startWith from 'licia/startWith'
 import trim from 'licia/trim'
+import os from 'node:os'
 import { shell } from './hdc/base'
 import * as base from './hdc/base'
+import fs from 'fs-extra'
+import path from 'node:path'
 
 const logger = log('hdc')
 
@@ -106,7 +114,20 @@ function getPropValue(key: string, str: string) {
 }
 
 const inputKey: IpcInputKey = async function (connectKey, keyCode) {
-  await base.shell(connectKey, `uinput -K -d ${keyCode} -u ${keyCode}`)
+  await shell(connectKey, `uinput -K -d ${keyCode} -u ${keyCode}`)
+}
+
+const screencap: IpcScreencap = async function (connectKey) {
+  const name = 'aya_screen.jpeg'
+  const p = `/data/local/tmp/${name}`
+  await shell(connectKey, [`rm -r ${p}`, `snapshot_display -i 0 -f ${p}`])
+
+  const target = client.getTarget(connectKey)
+  const dest = path.resolve(os.tmpdir(), name)
+  await target.recvFile(p, dest)
+  const buf = await fs.readFile(dest)
+
+  return buf.toString('base64')
 }
 
 export async function init() {
@@ -119,4 +140,5 @@ export async function init() {
   handleEvent('getTargets', getTargets)
   handleEvent('getOverview', getOverview)
   handleEvent('inputKey', inputKey)
+  handleEvent('screencap', screencap)
 }

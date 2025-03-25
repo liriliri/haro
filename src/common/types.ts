@@ -17,3 +17,4 @@ export type IpcGetOverview = (connectKey: string) => Promise<{
   physicalResolution: string
 }>
 export type IpcInputKey = (connectKey: string, keyCode: number) => Promise<void>
+export type IpcScreencap = (connectKey: string) => Promise<string>
