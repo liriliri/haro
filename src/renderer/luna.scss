@@ -22,3 +22,15 @@
 .luna-image-viewer {
   border: none;
 }
+
+.luna-setting {
+  .luna-setting-item {
+    &:hover,
+    &.luna-setting-selected {
+      background: none;
+    }
+    &.luna-setting-selected:focus {
+      outline: none;
+    }
+  }
+}

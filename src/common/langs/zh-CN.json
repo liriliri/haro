@@ -15,5 +15,11 @@
   "unknown": "未知",
   "memory": "内存",
   "physicalResolution": "物理分辨率",
-  "screenshot": "截屏"
+  "screenshot": "截屏",
+  "theme": "主题",
+  "light": "浅色",
+  "dark": "暗色",
+  "sysPreference": "系统设置",
+  "settings": "设置",
+  "appearance": "外观"
 }

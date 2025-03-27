@@ -13,6 +13,8 @@ export default Object.assign(mainObj, {
   setMainStore: invoke<IpcSetStore>('setMainStore'),
   getTargets: invoke<IpcGetTargets>('getTargets'),
   getOverview: invoke<IpcGetOverview>('getOverview'),
+  getSettingsStore: invoke<IpcGetStore>('getSettingsStore'),
+  setSettingsStore: invoke<IpcSetStore>('setSettingsStore'),
   inputKey: invoke<IpcInputKey>('inputKey'),
   screencap: invoke<IpcScreencap>('screencap'),
 })
