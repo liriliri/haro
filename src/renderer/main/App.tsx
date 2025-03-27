@@ -5,6 +5,7 @@ import { observer } from 'mobx-react-lite'
 import store from './store'
 import Overview from './components/overview/Overview'
 import Screenshot from './components/screenshot/Screenshot'
+import Application from './components/application/Application'
 
 export default observer(function App() {
   return (
@@ -17,6 +18,9 @@ export default observer(function App() {
         >
           <Panel panel="overview">
             <Overview />
+          </Panel>
+          <Panel panel="application">
+            <Application />
           </Panel>
           <Panel panel="screenshot">
             <Screenshot />

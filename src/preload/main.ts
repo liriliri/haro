@@ -1,7 +1,9 @@
 import {
+  IpcGetBundles,
   IpcGetOverview,
   IpcGetTargets,
   IpcInputKey,
+  IpcInstallBundle,
   IpcScreencap,
 } from 'common/types'
 import { IpcGetStore, IpcSetStore } from 'share/common/types'
@@ -17,4 +19,6 @@ export default Object.assign(mainObj, {
   setSettingsStore: invoke<IpcSetStore>('setSettingsStore'),
   inputKey: invoke<IpcInputKey>('inputKey'),
   screencap: invoke<IpcScreencap>('screencap'),
+  getBundles: invoke<IpcGetBundles>('getBundles'),
+  installBundle: invoke<IpcInstallBundle>('installBundle'),
 })

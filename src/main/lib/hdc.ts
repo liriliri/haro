@@ -13,6 +13,7 @@ import trim from 'licia/trim'
 import os from 'node:os'
 import { shell } from './hdc/base'
 import * as base from './hdc/base'
+import * as bundle from './hdc/bundle'
 import fs from 'fs-extra'
 import path from 'node:path'
 
@@ -136,6 +137,7 @@ export async function init() {
   client = Hdc.createClient()
 
   base.init(client)
+  bundle.init(client)
 
   handleEvent('getTargets', getTargets)
   handleEvent('getOverview', getOverview)

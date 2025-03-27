@@ -4,6 +4,7 @@ import BaseStore from 'share/renderer/store/BaseStore'
 import isStr from 'licia/isStr'
 import find from 'licia/find'
 import { Settings } from './settings'
+import { Application } from './application'
 import { ITarget } from '../../../common/types'
 import { setMemStore } from 'share/renderer/lib/util'
 import isEmpty from 'licia/isEmpty'
@@ -13,6 +14,7 @@ class Store extends BaseStore {
   target: ITarget | null = null
   panel = 'overview'
   settings = new Settings()
+  application = new Application()
   constructor() {
     super()
 
