@@ -1,4 +1,5 @@
 import {
+  IpcGetBundleInfos,
   IpcGetBundles,
   IpcGetOverview,
   IpcGetTargets,
@@ -20,5 +21,6 @@ export default Object.assign(mainObj, {
   inputKey: invoke<IpcInputKey>('inputKey'),
   screencap: invoke<IpcScreencap>('screencap'),
   getBundles: invoke<IpcGetBundles>('getBundles'),
+  getBundleInfos: invoke<IpcGetBundleInfos>('getBundleInfos'),
   installBundle: invoke<IpcInstallBundle>('installBundle'),
 })

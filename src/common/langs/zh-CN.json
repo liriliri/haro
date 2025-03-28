@@ -38,5 +38,16 @@
   "recapture": "重新截图",
   "actualSize": "实际大小",
   "rotateLeft": "向左旋转",
-  "rotateRight": "向右旋转"
+  "rotateRight": "向右旋转",
+  "totalBundle": "共 {{total}} 个应用",
+  "bundleInfo": "应用信息",
+  "sysBundle": "系统应用",
+  "yes": "是",
+  "no": "否",
+  "apiTargetVersion": "API 目标版本",
+  "vendor": "开发厂商",
+  "installTime": "安装时间",
+  "releaseType": "分发类型",
+  "bundleName": "包名",
+  "version": "版本"
 }

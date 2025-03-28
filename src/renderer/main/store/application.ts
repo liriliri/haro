@@ -3,9 +3,11 @@ import extend from 'licia/extend'
 
 export class Application {
   itemSize = 48
+  listView = false
   constructor() {
     makeObservable(this, {
       itemSize: observable,
+      listView: observable,
     })
 
     this.init()
@@ -22,6 +24,7 @@ export class Application {
     })
     await main.setMainStore('application', {
       itemSize: this.itemSize,
+      listView: this.listView,
     })
   }
 }

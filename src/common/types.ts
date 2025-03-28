@@ -5,6 +5,18 @@ export interface ITarget {
   sdkVersion: string
 }
 
+export interface IBundleInfo {
+  bundleName: string
+  versionName: string
+  icon: string
+  label: string
+  system: boolean
+  apiTargetVersion: number
+  vendor: string
+  installTime: number
+  releaseType: string
+}
+
 export type IpcGetTargets = () => Promise<ITarget[]>
 export type IpcGetOverview = (connectKey: string) => Promise<{
   name: string
@@ -23,3 +35,7 @@ export type IpcInstallBundle = (
   connectKey: string,
   hap: string
 ) => Promise<void>
+export type IpcGetBundleInfos = (
+  connectKey: string,
+  bundleNames: string[]
+) => Promise<IBundleInfo[]>

@@ -23,5 +23,7 @@
   "../share/renderer/icon/reset.svg",
   "../share/renderer/icon/copy.svg",
   "../share/renderer/icon/check.svg",
-  "../share/renderer/icon/setting.svg"
+  "../share/renderer/icon/setting.svg",
+  "../share/renderer/icon/list.svg",
+  "../share/renderer/icon/grid.svg"
 ]
