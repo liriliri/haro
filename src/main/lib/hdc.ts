@@ -4,7 +4,7 @@ import {
   IpcInputKey,
   IpcScreencap,
 } from '../../common/types'
-import { handleEvent } from 'share/main/lib/util'
+import { handleEvent, resolveUnpack } from 'share/main/lib/util'
 import Hdc, { Client } from 'hdckit'
 import log from 'share/common/log'
 import map from 'licia/map'
@@ -16,8 +16,14 @@ import * as base from './hdc/base'
 import * as bundle from './hdc/bundle'
 import fs from 'fs-extra'
 import path from 'node:path'
+import isWindows from 'licia/isWindows'
+import isStrBlank from 'licia/isStrBlank'
+import { getSettingsStore } from './store'
+import { isDev } from 'share/common/util'
 
 const logger = log('hdc')
+
+const settingsStore = getSettingsStore()
 
 let client: Client
 
@@ -134,7 +140,20 @@ const screencap: IpcScreencap = async function (connectKey) {
 export async function init() {
   logger.info('init')
 
-  client = Hdc.createClient()
+  let bin = isWindows ? resolveUnpack('hdc/hdc.exe') : resolveUnpack('hdc/hdc')
+  if (isDev()) {
+    bin = isWindows
+      ? resolveUnpack('hdc/win/hdc.exe')
+      : resolveUnpack('hdc/mac/hdc')
+  }
+  const hdcPath = settingsStore.get('hdcPath')
+  if (hdcPath === 'hdc' || (!isStrBlank(hdcPath) && fs.existsSync(hdcPath))) {
+    bin = hdcPath
+  }
+
+  client = Hdc.createClient({
+    bin,
+  })
 
   base.init(client)
   bundle.init(client)

@@ -8,7 +8,8 @@ const config = {
   directories: {
     output: `../release/${pkg.version}`,
   },
-  files: ['main', 'preload', 'renderer'],
+  files: ['main', 'preload', 'renderer', 'hdc'],
+  asarUnpack: ['hdc/**/*'],
   artifactName: '${productName}-${version}-${os}-${arch}.${ext}',
   nsis: {
     allowToChangeInstallationDirectory: true,

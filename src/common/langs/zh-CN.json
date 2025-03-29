@@ -59,5 +59,8 @@
   "toggleDevtools": "切换开发人员工具",
   "reportIssue": "报告问题",
   "donate": "捐赠",
-  "tools": "工具"
+  "tools": "工具",
+  "requireReload": "需要重新启动",
+  "hdcPath": "HDC 位置",
+  "browse": "浏览"
 }
