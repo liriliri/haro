@@ -1,5 +1,6 @@
 {
   "name": "haro",
+  "productName": "HARO",
   "version": "0.1.0",
   "description": "Harmony hdc desktop app",
   "main": "dist/main/index.js",
