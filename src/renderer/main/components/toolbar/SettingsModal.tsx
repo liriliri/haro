@@ -1,6 +1,8 @@
 import LunaModal from 'luna-modal/react'
 import LunaSetting, {
+  LunaSettingButton,
   LunaSettingSelect,
+  LunaSettingSeparator,
   LunaSettingTitle,
 } from 'luna-setting/react'
 import { t } from '../../../../common/util'
@@ -41,6 +43,7 @@ export default observer(function SettingsModal(props: IModalProps) {
             [t('dark')]: 'dark',
           }}
         />
+        <LunaSettingSeparator />
         <LunaSettingTitle title="HDC" />
         <SettingPath
           title={t('hdcPath')}
@@ -52,6 +55,10 @@ export default observer(function SettingsModal(props: IModalProps) {
           options={{
             properties: ['openFile'],
           }}
+        />
+        <LunaSettingButton
+          description={t('restartHaro')}
+          onClick={() => main.relaunch()}
         />
       </LunaSetting>
     </LunaModal>,
