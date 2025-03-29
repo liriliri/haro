@@ -1,4 +1,5 @@
 import { app } from 'electron'
+import * as menu from './lib/menu'
 import * as ipc from 'share/main/lib/ipc'
 import * as main from './window/main'
 import * as language from 'share/main/lib/language'
@@ -30,4 +31,5 @@ app.on('ready', () => {
   hdc.init()
   ipc.init()
   main.showWin()
+  menu.init()
 })

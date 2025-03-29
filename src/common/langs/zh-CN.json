@@ -49,5 +49,15 @@
   "installTime": "安装时间",
   "releaseType": "分发类型",
   "bundleName": "包名",
-  "version": "版本"
+  "version": "版本",
+  "hideHaro": "隐藏 HARO",
+  "hideOthers": "隐藏其他",
+  "showAll": "显示全部",
+  "quitHaro": "退出 HARO",
+  "aboutHaro": "关于 HARO",
+  "help": "帮助",
+  "toggleDevtools": "切换开发人员工具",
+  "reportIssue": "报告问题",
+  "donate": "捐赠",
+  "tools": "工具"
 }
