@@ -2,7 +2,7 @@ import { lazy } from 'react'
 import { createRoot } from 'react-dom/client'
 import hotKey from 'licia/hotKey'
 import log from 'share/common/log'
-import { i18n } from '../common/util'
+import { i18n, t } from '../common/util'
 import { isDev, getPlatform } from 'share/common/util'
 import 'luna-toolbar/css'
 import 'luna-tab/css'
@@ -16,6 +16,7 @@ import './luna.scss'
 import './icon.css'
 import 'share/renderer/main.scss'
 import './main.scss'
+import getUrlParam from 'licia/getUrlParam'
 
 if (!isDev()) {
   log.setLevel('info')
@@ -28,8 +29,15 @@ function renderApp() {
 
   const container: HTMLElement = document.getElementById('app') as HTMLElement
 
-  const App = lazy(() => import('./main/App.js') as Promise<any>)
-  const title = 'HARO'
+  let App = lazy(() => import('./main/App.js') as Promise<any>)
+  let title = 'HARO'
+
+  switch (getUrlParam('page')) {
+    case 'terminal':
+      App = lazy(() => import('share/renderer/terminal/App.js') as Promise<any>)
+      title = t('terminal')
+      break
+  }
 
   preload.setTitle(title)
 

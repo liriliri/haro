@@ -63,5 +63,7 @@
   "requireReload": "需要重新启动",
   "hdcPath": "HDC 位置",
   "browse": "浏览",
-  "restartHaro": "重启 HARO"
+  "restartHaro": "重启 HARO",
+  "terminal": "控制台",
+  "clear": "清空"
 }
