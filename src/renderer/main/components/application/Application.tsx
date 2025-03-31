@@ -1,4 +1,5 @@
 import LunaToolbar, {
+  LunaToolbarCheckbox,
   LunaToolbarInput,
   LunaToolbarSeparator,
   LunaToolbarSpace,
@@ -59,7 +60,10 @@ export default observer(function Application() {
 
     setBundleInfos([])
     setIsLoading(true)
-    const bundles = await main.getBundles(target.key)
+    const bundles = await main.getBundles(
+      target.key,
+      store.application.sysBundle
+    )
     const chunks = chunk(bundles, 5)
     let bundleInfos: IBundleInfo[] = []
     for (let i = 0, len = chunks.length; i < len; i++) {
@@ -157,6 +161,17 @@ export default observer(function Application() {
           placeholder={t('filter')}
           onChange={(val) => setFilter(val)}
         />
+        <LunaToolbarCheckbox
+          keyName="sysBundle"
+          value={store.application.sysBundle}
+          label={t('sysBundle')}
+          onChange={(val) => {
+            store.application.set('sysBundle', val)
+            refresh()
+          }}
+          disabled={isLoading}
+        />
+        <LunaToolbarSeparator />
         <LunaToolbarText
           text={t('totalBundle', { total: bundleInfos.length })}
         />
@@ -212,7 +227,7 @@ export default observer(function Application() {
         <ToolbarIcon
           icon="refresh"
           title={t('refresh')}
-          disabled={!target}
+          disabled={isLoading || !target}
           onClick={() => refresh()}
         />
       </LunaToolbar>

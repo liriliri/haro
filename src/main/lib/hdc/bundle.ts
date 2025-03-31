@@ -13,15 +13,49 @@ import types from 'licia/types'
 import log from 'share/common/log'
 import map from 'licia/map'
 import startWith from 'licia/startWith'
+import filter from 'licia/filter'
+import contain from 'licia/contain'
 
 const logger = log('hdcBundle')
 
 let client: Client
 
-const getBundles: IpcGetBundles = async (connectKey) => {
+const getBundles: IpcGetBundles = async (connectKey, system = true) => {
   const result = await shell(connectKey, 'bm dump -a')
+  const bundles = map(trim(result).split('\n').slice(1), (line) => trim(line))
 
-  return map(trim(result).split('\n').slice(1), (line) => trim(line))
+  return system ? bundles : filter(bundles, (bundle) => !isSystemBundle(bundle))
+}
+
+function isSystemBundle(bundle: string) {
+  const sysBundlePrefixs = [
+    'com.huawei.hmos',
+    'com.huawei.hms',
+    'com.huawei.msdp',
+    'com.ohos',
+  ]
+  for (let i = 0, len = sysBundlePrefixs.length; i < len; i++) {
+    if (startWith(bundle, sysBundlePrefixs[i])) {
+      return true
+    }
+  }
+
+  if (
+    contain(
+      [
+        'ohos.global.systemres',
+        'com.huawei.associateassistant',
+        'com.huawei.batterycare',
+        'com.huawei.shell_assistant',
+        'com.usb.right',
+      ],
+      bundle
+    )
+  ) {
+    return true
+  }
+
+  return false
 }
 
 const getBundleInfos: IpcGetBundleInfos = async (connectKey, bundleNames) => {

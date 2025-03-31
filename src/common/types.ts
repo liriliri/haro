@@ -30,7 +30,10 @@ export type IpcGetOverview = (connectKey: string) => Promise<{
 }>
 export type IpcInputKey = (connectKey: string, keyCode: number) => Promise<void>
 export type IpcScreencap = (connectKey: string) => Promise<string>
-export type IpcGetBundles = (connectKey: string) => Promise<string[]>
+export type IpcGetBundles = (
+  connectKey: string,
+  system?: boolean
+) => Promise<string[]>
 export type IpcInstallBundle = (
   connectKey: string,
   hap: string
