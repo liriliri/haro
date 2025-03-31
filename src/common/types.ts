@@ -52,3 +52,5 @@ export type IpcStopBundle = (
   connectKey: string,
   bundleName: string
 ) => Promise<void>
+export type IpcCleanBundleData = IpcStopBundle
+export type IpcCleanBundleCache = IpcStopBundle

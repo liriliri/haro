@@ -1,5 +1,7 @@
 import {
   IBundleInfo,
+  IpcCleanBundleCache,
+  IpcCleanBundleData,
   IpcGetBundleInfos,
   IpcGetBundles,
   IpcInstallBundle,
@@ -154,6 +156,17 @@ const stopBundle: IpcStopBundle = async (connectKey, bundleName) => {
   await shell(connectKey, `aa force-stop ${bundleName}`)
 }
 
+const cleanBundleData: IpcCleanBundleData = async (connectKey, bundleName) => {
+  await shell(connectKey, `bm clean -n ${bundleName} -d`)
+}
+
+const cleanBundleCache: IpcCleanBundleCache = async (
+  connectKey,
+  bundleName
+) => {
+  await shell(connectKey, `bm clean -n ${bundleName} -c`)
+}
+
 export async function init(c: Client) {
   client = c
 
@@ -162,4 +175,6 @@ export async function init(c: Client) {
   handleEvent('getBundleInfos', getBundleInfos)
   handleEvent('startBundle', startBundle)
   handleEvent('stopBundle', stopBundle)
+  handleEvent('cleanBundleData', cleanBundleData)
+  handleEvent('cleanBundleCache', cleanBundleCache)
 }

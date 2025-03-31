@@ -69,5 +69,11 @@
   "mainAbility": "主 Ability",
   "open": "打开",
   "stop": "停止",
-  "stopBundleConfirm": "确定要退出 {{name}} 吗？"
+  "stopBundleConfirm": "确定要退出 {{name}} 吗？",
+  "cleanCache": "清除缓存",
+  "cleanCacheConfirm": "确定要清除 {{name}} 的缓存吗？",
+  "cacheCleaned": "缓存已清除",
+  "cleanData": "清除数据",
+  "cleanDataConfirm": "确定要清除 {{name}} 的数据吗？",
+  "dataCleaned": "数据已清除"
 }

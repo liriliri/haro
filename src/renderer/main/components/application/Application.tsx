@@ -28,6 +28,7 @@ import dateFormat from 'licia/dateFormat'
 import contextMenu from 'share/renderer/lib/contextMenu'
 import LunaModal from 'luna-modal'
 import className from 'licia/className'
+import { notify } from 'share/renderer/lib/util'
 
 export default observer(function Application() {
   const [isLoading, setIsLoading] = useState(false)
@@ -143,6 +144,33 @@ export default observer(function Application() {
           )
           if (result) {
             await main.stopBundle(target.key, info.bundleName)
+          }
+        },
+      },
+      {
+        type: 'separator',
+      },
+      {
+        label: t('cleanCache'),
+        click: async () => {
+          const result = await LunaModal.confirm(
+            t('cleanCacheConfirm', { name: info.label })
+          )
+          if (result) {
+            await main.cleanBundleCache(target.key, info.bundleName)
+            notify(t('cacheCleaned'), { icon: 'success' })
+          }
+        },
+      },
+      {
+        label: t('cleanData'),
+        click: async () => {
+          const result = await LunaModal.confirm(
+            t('cleanDataConfirm', { name: info.label })
+          )
+          if (result) {
+            await main.cleanBundleData(target.key, info.bundleName)
+            notify(t('dataCleaned'), { icon: 'success' })
           }
         },
       },

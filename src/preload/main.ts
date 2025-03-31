@@ -1,4 +1,6 @@
 import {
+  IpcCleanBundleCache,
+  IpcCleanBundleData,
   IpcGetBundleInfos,
   IpcGetBundles,
   IpcGetOverview,
@@ -27,4 +29,6 @@ export default Object.assign(mainObj, {
   installBundle: invoke<IpcInstallBundle>('installBundle'),
   startBundle: invoke<IpcStartBundle>('startBundle'),
   stopBundle: invoke<IpcStopBundle>('stopBundle'),
+  cleanBundleData: invoke<IpcCleanBundleData>('cleanBundleData'),
+  cleanBundleCache: invoke<IpcCleanBundleCache>('cleanBundleCache'),
 })
