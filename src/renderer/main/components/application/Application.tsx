@@ -27,6 +27,7 @@ import toEl from 'licia/toEl'
 import dateFormat from 'licia/dateFormat'
 import contextMenu from 'share/renderer/lib/contextMenu'
 import LunaModal from 'luna-modal'
+import className from 'licia/className'
 
 export default observer(function Application() {
   const [isLoading, setIsLoading] = useState(false)
@@ -35,6 +36,13 @@ export default observer(function Application() {
   const [filter, setFilter] = useState('')
   const [listHeight, setListHeight] = useState(0)
   const [bundleInfoModalVisible, setBundleInfoModalVisible] = useState(false)
+  const [isOpenEffectAnimating, setIsOpenEffectAnimating] = useState(false)
+  const [openEffectStyle, setOpenEffectStyle] = useState({
+    left: 0,
+    top: 0,
+    width: 0,
+    height: 0,
+  })
   const iconsRef = useRef<any[]>([])
 
   const { target } = store
@@ -155,6 +163,12 @@ export default observer(function Application() {
           onClick={(e: any, node) => {
             showInfo((node.data as any).bundleName)
           }}
+          onDoubleClick={(e: any, node) => {
+            const info = (node.data as any).info
+            if (info.mainAbility) {
+              open(info.bundleName, info.mainAbility)
+            }
+          }}
           onContextMenu={(e: any, node) => {
             onContextMenu(e, (node.data as any).info)
           }}
@@ -193,11 +207,35 @@ export default observer(function Application() {
             const info = (icon.data as any).info
             showInfo(info.bundleName)
           }}
+          onDoubleClick={(e: any, icon) => {
+            const info = (icon.data as any).info
+            if (!info.mainAbility) {
+              return
+            }
+            const container: HTMLElement = icon.container
+            const clientRect = container.getBoundingClientRect()
+            setOpenEffectStyle({
+              left: clientRect.left,
+              top: clientRect.top - 60,
+              width: clientRect.width,
+              height: clientRect.width,
+            })
+            open(info.bundleName, info.mainAbility)
+            setIsOpenEffectAnimating(true)
+          }}
           onContextMenu={(e: any, icon) => {
             onContextMenu(e, (icon.data as any).info)
           }}
         />
       )}
+      <div
+        className={className({
+          [Style.openEffect]: true,
+          [Style.openEffectAnimation]: isOpenEffectAnimating,
+        })}
+        style={openEffectStyle}
+        onAnimationEnd={() => setIsOpenEffectAnimating(false)}
+      />
     </div>
   )
 
