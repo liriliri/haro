@@ -4,6 +4,7 @@ import {
   IpcGetBundles,
   IpcInstallBundle,
   IpcStartBundle,
+  IpcStopBundle,
 } from 'common/types'
 import { Client } from 'hdckit'
 import { handleEvent } from 'share/main/lib/util'
@@ -149,6 +150,10 @@ const startBundle: IpcStartBundle = async (connectKey, bundleName, ability) => {
   await shell(connectKey, `aa start -a ${ability} -b ${bundleName}`)
 }
 
+const stopBundle: IpcStopBundle = async (connectKey, bundleName) => {
+  await shell(connectKey, `aa force-stop ${bundleName}`)
+}
+
 export async function init(c: Client) {
   client = c
 
@@ -156,4 +161,5 @@ export async function init(c: Client) {
   handleEvent('installBundle', installBundle)
   handleEvent('getBundleInfos', getBundleInfos)
   handleEvent('startBundle', startBundle)
+  handleEvent('stopBundle', stopBundle)
 }

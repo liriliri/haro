@@ -26,6 +26,7 @@ import LunaDataGrid from 'luna-data-grid/react'
 import toEl from 'licia/toEl'
 import dateFormat from 'licia/dateFormat'
 import contextMenu from 'share/renderer/lib/contextMenu'
+import LunaModal from 'luna-modal'
 
 export default observer(function Application() {
   const [isLoading, setIsLoading] = useState(false)
@@ -106,6 +107,8 @@ export default observer(function Application() {
   }
 
   function onContextMenu(e: PointerEvent, info: IBundleInfo) {
+    const target = store.target!
+
     const template: any[] = [
       {
         label: t('bundleInfo'),
@@ -121,6 +124,17 @@ export default observer(function Application() {
         click: () => {
           if (info.mainAbility) {
             open(info.bundleName, info.mainAbility)
+          }
+        },
+      },
+      {
+        label: t('stop'),
+        click: async () => {
+          const result = await LunaModal.confirm(
+            t('stopBundleConfirm', { name: info.label })
+          )
+          if (result) {
+            await main.stopBundle(target.key, info.bundleName)
           }
         },
       },

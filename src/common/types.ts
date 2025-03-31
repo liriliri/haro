@@ -48,3 +48,7 @@ export type IpcStartBundle = (
   bundleName: string,
   ability: string
 ) => Promise<void>
+export type IpcStopBundle = (
+  connectKey: string,
+  bundleName: string
+) => Promise<void>

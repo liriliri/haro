@@ -67,5 +67,7 @@
   "terminal": "控制台",
   "clear": "清空",
   "mainAbility": "主 Ability",
-  "open": "打开"
+  "open": "打开",
+  "stop": "停止",
+  "stopBundleConfirm": "确定要退出 {{name}} 吗？"
 }
