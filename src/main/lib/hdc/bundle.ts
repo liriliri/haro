@@ -93,6 +93,13 @@ const getBundleInfos: IpcGetBundleInfos = async (connectKey, bundleNames) => {
     bundleInfo.installTime = info.installTime
     bundleInfo.releaseType = info.releaseType
 
+    const mainEntry = info.mainEntry
+    if (mainEntry) {
+      const mainModuleInfo =
+        info.hapModuleInfos[info.hapModuleNames.indexOf(mainEntry)]
+      bundleInfo.mainAbility = mainModuleInfo.mainAbility
+    }
+
     if (!bundleInfo.system && !startWith(bundleName, 'com.huawei')) {
       try {
         const onlineInfo = await getOnlineBundleInfo(bundleName)

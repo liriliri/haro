@@ -15,6 +15,7 @@ export interface IBundleInfo {
   vendor: string
   installTime: number
   releaseType: string
+  mainAbility?: string
 }
 
 export type IpcGetTargets = () => Promise<ITarget[]>

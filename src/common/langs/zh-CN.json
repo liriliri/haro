@@ -65,5 +65,6 @@
   "browse": "浏览",
   "restartHaro": "重启 HARO",
   "terminal": "控制台",
-  "clear": "清空"
+  "clear": "清空",
+  "mainAbility": "主 Ability"
 }

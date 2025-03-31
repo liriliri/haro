@@ -44,6 +44,7 @@ export default function BundleInfoModal(props: IProps) {
         dateFormat(new Date(bundleInfo.installTime), 'yyyy-mm-dd HH:MM:ss')
       )}
       {item(t('releaseType'), bundleInfo.releaseType)}
+      {bundleInfo.mainAbility && item(t('mainAbility'), bundleInfo.mainAbility)}
     </LunaModal>,
     document.body
   )
