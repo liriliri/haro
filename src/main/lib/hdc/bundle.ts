@@ -3,6 +3,7 @@ import {
   IpcGetBundleInfos,
   IpcGetBundles,
   IpcInstallBundle,
+  IpcStartBundle,
 } from 'common/types'
 import { Client } from 'hdckit'
 import { handleEvent } from 'share/main/lib/util'
@@ -144,10 +145,15 @@ const installBundle: IpcInstallBundle = async (connectKey, hap) => {
   await target.install(hap)
 }
 
+const startBundle: IpcStartBundle = async (connectKey, bundleName, ability) => {
+  await shell(connectKey, `aa start -a ${ability} -b ${bundleName}`)
+}
+
 export async function init(c: Client) {
   client = c
 
   handleEvent('getBundles', getBundles)
   handleEvent('installBundle', installBundle)
   handleEvent('getBundleInfos', getBundleInfos)
+  handleEvent('startBundle', startBundle)
 }

@@ -43,3 +43,8 @@ export type IpcGetBundleInfos = (
   connectKey: string,
   bundleNames: string[]
 ) => Promise<IBundleInfo[]>
+export type IpcStartBundle = (
+  connectKey: string,
+  bundleName: string,
+  ability: string
+) => Promise<void>

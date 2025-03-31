@@ -25,6 +25,7 @@ import BundleInfoModal from './BundleInfoModal'
 import LunaDataGrid from 'luna-data-grid/react'
 import toEl from 'licia/toEl'
 import dateFormat from 'licia/dateFormat'
+import contextMenu from 'share/renderer/lib/contextMenu'
 
 export default observer(function Application() {
   const [isLoading, setIsLoading] = useState(false)
@@ -100,6 +101,34 @@ export default observer(function Application() {
     }
   }
 
+  async function open(bundleName: string, ability: string) {
+    await main.startBundle(store.target!.key, bundleName, ability)
+  }
+
+  function onContextMenu(e: PointerEvent, info: IBundleInfo) {
+    const template: any[] = [
+      {
+        label: t('bundleInfo'),
+        click() {
+          showInfo(info.bundleName)
+        },
+      },
+      {
+        type: 'separator',
+      },
+      {
+        label: t('open'),
+        click: () => {
+          if (info.mainAbility) {
+            open(info.bundleName, info.mainAbility)
+          }
+        },
+      },
+    ]
+
+    contextMenu(e, template)
+  }
+
   const applications = (
     <div
       className={Style.applications}
@@ -111,6 +140,9 @@ export default observer(function Application() {
         <LunaDataGrid
           onClick={(e: any, node) => {
             showInfo((node.data as any).bundleName)
+          }}
+          onContextMenu={(e: any, node) => {
+            onContextMenu(e, (node.data as any).info)
           }}
           filter={filter}
           columns={columns}
@@ -146,6 +178,9 @@ export default observer(function Application() {
           onClick={(e: any, icon) => {
             const info = (icon.data as any).info
             showInfo(info.bundleName)
+          }}
+          onContextMenu={(e: any, icon) => {
+            onContextMenu(e, (icon.data as any).info)
           }}
         />
       )}

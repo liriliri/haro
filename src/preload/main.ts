@@ -6,6 +6,7 @@ import {
   IpcInputKey,
   IpcInstallBundle,
   IpcScreencap,
+  IpcStartBundle,
 } from 'common/types'
 import { IpcGetStore, IpcSetStore } from 'share/common/types'
 import mainObj from 'share/preload/main'
@@ -23,4 +24,5 @@ export default Object.assign(mainObj, {
   getBundles: invoke<IpcGetBundles>('getBundles'),
   getBundleInfos: invoke<IpcGetBundleInfos>('getBundleInfos'),
   installBundle: invoke<IpcInstallBundle>('installBundle'),
+  startBundle: invoke<IpcStartBundle>('startBundle'),
 })

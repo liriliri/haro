@@ -66,5 +66,6 @@
   "restartHaro": "重启 HARO",
   "terminal": "控制台",
   "clear": "清空",
-  "mainAbility": "主 Ability"
+  "mainAbility": "主 Ability",
+  "open": "打开"
 }
