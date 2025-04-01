@@ -11,6 +11,7 @@ import LunaModal from 'luna-modal/react'
 import { t } from '../../common/util'
 import icon from '../assets/icon.png'
 import Process from './components/process/Process'
+import Shell from './components/shell/Shell'
 
 export default observer(function App() {
   const [aboutVisible, setAboutVisible] = useState(false)
@@ -39,6 +40,9 @@ export default observer(function App() {
           </Panel>
           <Panel panel="process">
             <Process />
+          </Panel>
+          <Panel panel="shell">
+            <Shell />
           </Panel>
           <Panel panel="screenshot">
             <Screenshot />

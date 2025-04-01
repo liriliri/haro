@@ -1,6 +1,7 @@
 import {
   IpcCleanBundleCache,
   IpcCleanBundleData,
+  IpcCreateShell,
   IpcGetBundleInfos,
   IpcGetBundles,
   IpcGetOverview,
@@ -8,10 +9,12 @@ import {
   IpcGetTargets,
   IpcInputKey,
   IpcInstallBundle,
+  IpcKillShell,
   IpcScreencap,
   IpcStartBundle,
   IpcStopBundle,
   IpcUninstallBundle,
+  IpcWriteShell,
 } from '../common/types'
 import { IpcGetStore, IpcSetStore } from 'share/common/types'
 import mainObj from 'share/preload/main'
@@ -35,4 +38,7 @@ export default Object.assign(mainObj, {
   cleanBundleCache: invoke<IpcCleanBundleCache>('cleanBundleCache'),
   uninstallBundle: invoke<IpcUninstallBundle>('uninstallBundle'),
   getProcesses: invoke<IpcGetProcesses>('getProcesses'),
+  createShell: invoke<IpcCreateShell>('createShell'),
+  writeShell: invoke<IpcWriteShell>('writeShell'),
+  killShell: invoke<IpcKillShell>('killShell'),
 })

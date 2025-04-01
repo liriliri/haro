@@ -12,6 +12,7 @@ import startWith from 'licia/startWith'
 import trim from 'licia/trim'
 import os from 'node:os'
 import { shell } from './hdc/base'
+import * as shellHdc from './hdc/shell'
 import * as base from './hdc/base'
 import * as bundle from './hdc/bundle'
 import fs from 'fs-extra'
@@ -157,6 +158,7 @@ export async function init() {
 
   base.init(client)
   bundle.init(client)
+  shellHdc.init(client)
 
   handleEvent('getTargets', getTargets)
   handleEvent('getOverview', getOverview)

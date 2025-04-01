@@ -53,3 +53,25 @@
     }
   }
 }
+
+.luna-command-palette {
+  top: 28px;
+  z-index: theme.$z-index-popup-base;
+}
+
+.luna-command-palette-body {
+  padding: #{theme.$padding-x-x-s}px;
+  border-radius: #{theme.$border-radius-x-s}px;
+}
+
+.luna-command-palette-input {
+  border-radius: #{theme.$border-radius-x-s}px;
+  padding: #{theme.$padding-x-x-s}px;
+  margin-bottom: #{theme.$margin-x-x-s}px;
+}
+
+.luna-command-palette-list {
+  li {
+    border-radius: #{theme.$border-radius-x-s}px;
+  }
+}

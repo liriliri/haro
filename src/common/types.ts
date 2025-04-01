@@ -60,3 +60,6 @@ export type IpcCleanBundleData = IpcStopBundle
 export type IpcCleanBundleCache = IpcStopBundle
 export type IpcUninstallBundle = IpcStopBundle
 export type IpcGetProcesses = (connectKey: string) => Promise<IProcess[]>
+export type IpcCreateShell = (connectKey: string) => Promise<string>
+export type IpcWriteShell = (sessionId: string, data: string) => Promise<void>
+export type IpcKillShell = (sessionId: string) => void

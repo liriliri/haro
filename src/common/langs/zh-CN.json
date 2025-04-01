@@ -85,5 +85,13 @@
   "user": "用户",
   "cpuTime": "CPU 时间",
   "onlyBundle": "仅显示应用",
-  "totalProcess": "共 {{total}} 个进程"
+  "totalProcess": "共 {{total}} 个进程",
+  "shell": "终端",
+  "add": "添加",
+  "close": "关闭",
+  "typeCmd": "输入命令",
+  "shortcut": "快捷命令",
+  "reboot": "重启",
+  "getUdid": "获取设备 UDID",
+  "batteryInfo": "电池信息"
 }
