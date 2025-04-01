@@ -27,5 +27,7 @@
   "../share/renderer/icon/list.svg",
   "../share/renderer/icon/grid.svg",
   "../share/renderer/icon/add.svg",
-  "../share/renderer/icon/delete.svg"
+  "../share/renderer/icon/delete.svg",
+  "../share/renderer/icon/expand.svg",
+  "../share/renderer/icon/collapse.svg"
 ]

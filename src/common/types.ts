@@ -63,3 +63,4 @@ export type IpcGetProcesses = (connectKey: string) => Promise<IProcess[]>
 export type IpcCreateShell = (connectKey: string) => Promise<string>
 export type IpcWriteShell = (sessionId: string, data: string) => Promise<void>
 export type IpcKillShell = (sessionId: string) => void
+export type IpcDumpWindowHierarchy = (connectKey: string) => Promise<string>

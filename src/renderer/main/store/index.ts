@@ -9,6 +9,7 @@ import { ITarget } from '../../../common/types'
 import { setMemStore } from 'share/renderer/lib/util'
 import isEmpty from 'licia/isEmpty'
 import { Process } from './process'
+import { Layout } from './layout'
 
 class Store extends BaseStore {
   targets: ITarget[] = []
@@ -17,6 +18,8 @@ class Store extends BaseStore {
   settings = new Settings()
   application = new Application()
   process = new Process()
+  layout = new Layout()
+  isInit = false
   constructor() {
     super()
 
@@ -24,6 +27,7 @@ class Store extends BaseStore {
       targets: observable,
       target: observable,
       panel: observable,
+      isInit: observable,
     })
 
     this.init()
@@ -76,6 +80,8 @@ class Store extends BaseStore {
       runInAction(() => (this.target = target))
     }
     await this.refreshTargets()
+
+    this.isInit = true
   }
 }
 

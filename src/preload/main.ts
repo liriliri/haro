@@ -2,6 +2,7 @@ import {
   IpcCleanBundleCache,
   IpcCleanBundleData,
   IpcCreateShell,
+  IpcDumpWindowHierarchy,
   IpcGetBundleInfos,
   IpcGetBundles,
   IpcGetOverview,
@@ -41,4 +42,5 @@ export default Object.assign(mainObj, {
   createShell: invoke<IpcCreateShell>('createShell'),
   writeShell: invoke<IpcWriteShell>('writeShell'),
   killShell: invoke<IpcKillShell>('killShell'),
+  dumpLayout: invoke<IpcDumpWindowHierarchy>('dumpWindowHierarchy'),
 })

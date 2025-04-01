@@ -12,6 +12,7 @@ import { t } from '../../common/util'
 import icon from '../assets/icon.png'
 import Process from './components/process/Process'
 import Shell from './components/shell/Shell'
+import Layout from './components/layout/Layout'
 
 export default observer(function App() {
   const [aboutVisible, setAboutVisible] = useState(false)
@@ -27,28 +28,33 @@ export default observer(function App() {
   return (
     <>
       <Toolbar />
-      <div className={Style.workspace}>
-        <div
-          className={Style.panels}
-          key={store.target ? store.target.key : ''}
-        >
-          <Panel panel="overview">
-            <Overview />
-          </Panel>
-          <Panel panel="application">
-            <Application />
-          </Panel>
-          <Panel panel="process">
-            <Process />
-          </Panel>
-          <Panel panel="shell">
-            <Shell />
-          </Panel>
-          <Panel panel="screenshot">
-            <Screenshot />
-          </Panel>
+      {store.isInit && (
+        <div className={Style.workspace}>
+          <div
+            className={Style.panels}
+            key={store.target ? store.target.key : ''}
+          >
+            <Panel panel="overview">
+              <Overview />
+            </Panel>
+            <Panel panel="application">
+              <Application />
+            </Panel>
+            <Panel panel="process">
+              <Process />
+            </Panel>
+            <Panel panel="shell">
+              <Shell />
+            </Panel>
+            <Panel panel="layout">
+              <Layout />
+            </Panel>
+            <Panel panel="screenshot">
+              <Screenshot />
+            </Panel>
+          </div>
         </div>
-      </div>
+      )}
       {createPortal(
         <LunaModal
           title={t('aboutHaro')}

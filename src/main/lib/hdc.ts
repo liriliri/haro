@@ -1,4 +1,5 @@
 import {
+  IpcDumpWindowHierarchy,
   IpcGetOverview,
   IpcGetTargets,
   IpcInputKey,
@@ -10,6 +11,7 @@ import log from 'share/common/log'
 import map from 'licia/map'
 import startWith from 'licia/startWith'
 import trim from 'licia/trim'
+import each from 'licia/each'
 import os from 'node:os'
 import { shell } from './hdc/base'
 import * as shellHdc from './hdc/shell'
@@ -138,6 +140,41 @@ const screencap: IpcScreencap = async function (connectKey) {
   return buf.toString('base64')
 }
 
+const dumpWindowHierarchy: IpcDumpWindowHierarchy = async function (
+  connectKey
+) {
+  const name = 'haro_layout.json'
+  const p = `/data/local/tmp/${name}`
+  await shell(connectKey, [`rm -r ${p}`, `uitest dumpLayout -p ${p}`])
+
+  const target = client.getTarget(connectKey)
+  const dest = path.resolve(os.tmpdir(), name)
+  await target.recvFile(p, dest)
+  const data = await fs.readFile(dest, 'utf8')
+  const json = JSON.parse(data)
+
+  return toHierarchyXml(json)
+}
+
+function toHierarchyXml(json: any) {
+  const { attributes, children } = json
+  let xml = ''
+
+  const tagName = attributes.type
+  delete attributes.type
+  xml += `<${tagName || 'Layout'}`
+  each(attributes, (val, key) => {
+    xml += ` ${key}="${val}"`
+  })
+  xml += '>'
+
+  each(children, (child) => {
+    xml += toHierarchyXml(child)
+  })
+
+  return xml + `</${tagName || 'Layout'}>`
+}
+
 export async function init() {
   logger.info('init')
 
@@ -164,4 +201,5 @@ export async function init() {
   handleEvent('getOverview', getOverview)
   handleEvent('inputKey', inputKey)
   handleEvent('screencap', screencap)
+  handleEvent('dumpWindowHierarchy', dumpWindowHierarchy)
 }

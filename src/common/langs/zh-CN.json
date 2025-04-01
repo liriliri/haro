@@ -93,5 +93,11 @@
   "shortcut": "快捷命令",
   "reboot": "重启",
   "getUdid": "获取设备 UDID",
-  "batteryInfo": "电池信息"
+  "batteryInfo": "电池信息",
+  "layout": "布局",
+  "showBorder": "显示边框",
+  "componentNotSelected": "未选择组件",
+  "expandAll": "展开全部",
+  "collapseAll": "折叠全部",
+  "showAttr": "显示属性"
 }
