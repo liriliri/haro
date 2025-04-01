@@ -10,6 +10,7 @@ import {
   IpcScreencap,
   IpcStartBundle,
   IpcStopBundle,
+  IpcUninstallBundle,
 } from 'common/types'
 import { IpcGetStore, IpcSetStore } from 'share/common/types'
 import mainObj from 'share/preload/main'
@@ -31,4 +32,5 @@ export default Object.assign(mainObj, {
   stopBundle: invoke<IpcStopBundle>('stopBundle'),
   cleanBundleData: invoke<IpcCleanBundleData>('cleanBundleData'),
   cleanBundleCache: invoke<IpcCleanBundleCache>('cleanBundleCache'),
+  uninstallBundle: invoke<IpcUninstallBundle>('uninstallBundle'),
 })

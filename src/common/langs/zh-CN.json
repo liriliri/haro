@@ -75,5 +75,7 @@
   "cacheCleaned": "缓存已清除",
   "cleanData": "清除数据",
   "cleanDataConfirm": "确定要清除 {{name}} 的数据吗？",
-  "dataCleaned": "数据已清除"
+  "dataCleaned": "数据已清除",
+  "uninstall": "卸载",
+  "uninstallConfirm": "确定要卸载 {{name}} 吗？"
 }

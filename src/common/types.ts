@@ -54,3 +54,4 @@ export type IpcStopBundle = (
 ) => Promise<void>
 export type IpcCleanBundleData = IpcStopBundle
 export type IpcCleanBundleCache = IpcStopBundle
+export type IpcUninstallBundle = IpcStopBundle

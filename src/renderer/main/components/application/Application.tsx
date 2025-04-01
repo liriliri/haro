@@ -174,6 +174,18 @@ export default observer(function Application() {
           }
         },
       },
+      {
+        label: t('uninstall'),
+        click: async () => {
+          const result = await LunaModal.confirm(
+            t('uninstallConfirm', { name: info.label })
+          )
+          if (result) {
+            await main.uninstallBundle(target.key, info.bundleName)
+            refresh()
+          }
+        },
+      },
     ]
 
     contextMenu(e, template)

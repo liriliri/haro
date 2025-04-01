@@ -7,6 +7,7 @@ import {
   IpcInstallBundle,
   IpcStartBundle,
   IpcStopBundle,
+  IpcUninstallBundle,
 } from 'common/types'
 import { Client } from 'hdckit'
 import { handleEvent } from 'share/main/lib/util'
@@ -167,6 +168,11 @@ const cleanBundleCache: IpcCleanBundleCache = async (
   await shell(connectKey, `bm clean -n ${bundleName} -c`)
 }
 
+const uninstallBundle: IpcUninstallBundle = async (connectKey, bundleName) => {
+  const target = await client.getTarget(connectKey)
+  await target.uninstall(bundleName)
+}
+
 export async function init(c: Client) {
   client = c
 
@@ -177,4 +183,5 @@ export async function init(c: Client) {
   handleEvent('stopBundle', stopBundle)
   handleEvent('cleanBundleData', cleanBundleData)
   handleEvent('cleanBundleCache', cleanBundleCache)
+  handleEvent('uninstallBundle', uninstallBundle)
 }
