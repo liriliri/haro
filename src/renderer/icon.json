@@ -25,5 +25,6 @@
   "../share/renderer/icon/check.svg",
   "../share/renderer/icon/setting.svg",
   "../share/renderer/icon/list.svg",
-  "../share/renderer/icon/grid.svg"
+  "../share/renderer/icon/grid.svg",
+  "../share/renderer/icon/add.svg"
 ]

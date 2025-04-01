@@ -77,5 +77,7 @@
   "cleanDataConfirm": "确定要清除 {{name}} 的数据吗？",
   "dataCleaned": "数据已清除",
   "uninstall": "卸载",
-  "uninstallConfirm": "确定要卸载 {{name}} 吗？"
+  "uninstallConfirm": "确定要卸载 {{name}} 吗？",
+  "bundleInstalling": "安装应用中：{{path}}",
+  "installBundleErr": "安装应用失败"
 }

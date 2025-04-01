@@ -29,6 +29,7 @@ import contextMenu from 'share/renderer/lib/contextMenu'
 import LunaModal from 'luna-modal'
 import className from 'licia/className'
 import { notify } from 'share/renderer/lib/util'
+import { installBundles } from '../../../lib/util'
 
 export default observer(function Application() {
   const [isLoading, setIsLoading] = useState(false)
@@ -98,6 +99,13 @@ export default observer(function Application() {
       setBundleInfos(bundleInfos)
     }
     setIsLoading(false)
+  }
+
+  async function install(hapPaths?: string[]) {
+    const result = await installBundles(target!.key, hapPaths)
+    if (result) {
+      refresh()
+    }
   }
 
   function showInfo(bunldeName: string) {
@@ -303,6 +311,13 @@ export default observer(function Application() {
           text={t('totalBundle', { total: bundleInfos.length })}
         />
         <LunaToolbarSpace />
+        <ToolbarIcon
+          icon="add"
+          title={t('install')}
+          onClick={() => install()}
+          disabled={!target}
+        />
+        <LunaToolbarSeparator />
         <ToolbarIcon
           icon="zoom-in"
           title={t('zoomIn')}
