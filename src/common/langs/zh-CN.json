@@ -79,5 +79,11 @@
   "uninstall": "卸载",
   "uninstallConfirm": "确定要卸载 {{name}} 吗？",
   "bundleInstalling": "安装应用中：{{path}}",
-  "installBundleErr": "安装应用失败"
+  "installBundleErr": "安装应用失败",
+  "process": "进程",
+  "processName": "进程名称",
+  "user": "用户",
+  "cpuTime": "CPU 时间",
+  "onlyBundle": "仅显示应用",
+  "totalProcess": "共 {{total}} 个进程"
 }

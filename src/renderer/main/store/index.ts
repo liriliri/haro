@@ -8,6 +8,7 @@ import { Application } from './application'
 import { ITarget } from '../../../common/types'
 import { setMemStore } from 'share/renderer/lib/util'
 import isEmpty from 'licia/isEmpty'
+import { Process } from './process'
 
 class Store extends BaseStore {
   targets: ITarget[] = []
@@ -15,6 +16,7 @@ class Store extends BaseStore {
   panel = 'overview'
   settings = new Settings()
   application = new Application()
+  process = new Process()
   constructor() {
     super()
 

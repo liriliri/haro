@@ -18,6 +18,10 @@ export interface IBundleInfo {
   mainAbility?: string
 }
 
+export interface IProcess {
+  name: string
+}
+
 export type IpcGetTargets = () => Promise<ITarget[]>
 export type IpcGetOverview = (connectKey: string) => Promise<{
   name: string
@@ -55,3 +59,4 @@ export type IpcStopBundle = (
 export type IpcCleanBundleData = IpcStopBundle
 export type IpcCleanBundleCache = IpcStopBundle
 export type IpcUninstallBundle = IpcStopBundle
+export type IpcGetProcesses = (connectKey: string) => Promise<IProcess[]>

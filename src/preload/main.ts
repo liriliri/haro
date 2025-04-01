@@ -4,6 +4,7 @@ import {
   IpcGetBundleInfos,
   IpcGetBundles,
   IpcGetOverview,
+  IpcGetProcesses,
   IpcGetTargets,
   IpcInputKey,
   IpcInstallBundle,
@@ -11,7 +12,7 @@ import {
   IpcStartBundle,
   IpcStopBundle,
   IpcUninstallBundle,
-} from 'common/types'
+} from '../common/types'
 import { IpcGetStore, IpcSetStore } from 'share/common/types'
 import mainObj from 'share/preload/main'
 import { invoke } from 'share/preload/util'
@@ -33,4 +34,5 @@ export default Object.assign(mainObj, {
   cleanBundleData: invoke<IpcCleanBundleData>('cleanBundleData'),
   cleanBundleCache: invoke<IpcCleanBundleCache>('cleanBundleCache'),
   uninstallBundle: invoke<IpcUninstallBundle>('uninstallBundle'),
+  getProcesses: invoke<IpcGetProcesses>('getProcesses'),
 })
