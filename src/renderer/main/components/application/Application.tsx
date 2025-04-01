@@ -21,6 +21,7 @@ import isNull from 'licia/isNull'
 import Style from './Application.module.scss'
 import { PannelLoading } from '../common/loading'
 import find from 'licia/find'
+import endWith from 'licia/endWith'
 import BundleInfoModal from './BundleInfoModal'
 import LunaDataGrid from 'luna-data-grid/react'
 import toEl from 'licia/toEl'
@@ -28,7 +29,7 @@ import dateFormat from 'licia/dateFormat'
 import contextMenu from 'share/renderer/lib/contextMenu'
 import LunaModal from 'luna-modal'
 import className from 'licia/className'
-import { notify } from 'share/renderer/lib/util'
+import { isFileDrop, notify } from 'share/renderer/lib/util'
 import { installBundles } from '../../../lib/util'
 
 export default observer(function Application() {
@@ -36,6 +37,7 @@ export default observer(function Application() {
   const [bundleInfo, setBundleInfo] = useState<IBundleInfo | null>(null)
   const [bundleInfos, setBundleInfos] = useState<IBundleInfo[]>([])
   const [filter, setFilter] = useState('')
+  const [dropHighlight, setDropHighlight] = useState(false)
   const [listHeight, setListHeight] = useState(0)
   const [bundleInfoModalVisible, setBundleInfoModalVisible] = useState(false)
   const [isOpenEffectAnimating, setIsOpenEffectAnimating] = useState(false)
@@ -45,6 +47,7 @@ export default observer(function Application() {
     width: 0,
     height: 0,
   })
+  const draggingRef = useRef(0)
   const iconsRef = useRef<any[]>([])
 
   const { target } = store
@@ -99,6 +102,21 @@ export default observer(function Application() {
       setBundleInfos(bundleInfos)
     }
     setIsLoading(false)
+  }
+
+  async function onDrop(e: React.DragEvent) {
+    e.preventDefault()
+    setDropHighlight(false)
+    const files = e.dataTransfer.files
+    const apkPaths: string[] = []
+    for (let i = 0, len = files.length; i < len; i++) {
+      const path = preload.getPathForFile(files[i])
+      if (!endWith(path, '.hap')) {
+        continue
+      }
+      apkPaths.push(path)
+    }
+    await install(apkPaths)
   }
 
   async function install(hapPaths?: string[]) {
@@ -204,6 +222,23 @@ export default observer(function Application() {
       className={Style.applications}
       style={{
         overflowY: store.application.listView ? 'hidden' : 'auto',
+      }}
+      onDrop={onDrop}
+      onDragEnter={() => {
+        draggingRef.current++
+      }}
+      onDragLeave={() => {
+        draggingRef.current--
+        if (draggingRef.current === 0) {
+          setDropHighlight(false)
+        }
+      }}
+      onDragOver={(e) => {
+        if (!isFileDrop(e)) {
+          return
+        }
+        e.preventDefault()
+        setDropHighlight(true)
       }}
     >
       {store.application.listView ? (
@@ -373,7 +408,11 @@ export default observer(function Application() {
           onClick={() => refresh()}
         />
       </LunaToolbar>
-      <div className="panel-body">
+      <div
+        className={className('panel-body', {
+          [Style.highlight]: dropHighlight,
+        })}
+      >
         {isLoading && isEmpty(bundleInfos) ? <PannelLoading /> : applications}
       </div>
       {!isNull(bundleInfo) && (
