@@ -2,6 +2,6 @@
 
 <div align="center">
 
-Harmony hdc desktop app.
+鸿蒙 hdc 桌面应用。
 
 </div>
