@@ -57,7 +57,7 @@ export default observer(function SettingsModal(props: IModalProps) {
           }}
         />
         <LunaSettingButton
-          description={t('restartHaro')}
+          description={t('restartEcho')}
           onClick={() => main.relaunch()}
         />
       </LunaSetting>

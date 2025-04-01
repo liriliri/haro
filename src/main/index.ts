@@ -21,7 +21,7 @@ if (!app.requestSingleInstanceLock()) {
   process.exit(0)
 }
 
-app.setName('Haro')
+app.setName('Echo')
 
 app.on('ready', () => {
   logger.info('app ready')

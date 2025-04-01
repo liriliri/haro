@@ -14,7 +14,7 @@ function getTemplate(): MenuItemConstructorOptions[] {
           type: 'separator',
         },
         {
-          label: t('hideHaro'),
+          label: t('hideEcho'),
           role: 'hide',
         },
         {
@@ -28,11 +28,11 @@ function getTemplate(): MenuItemConstructorOptions[] {
       ]
     : []
 
-  const haro = {
+  const echo = {
     label: upperCase(app.name),
     submenu: [
       {
-        label: t('aboutHaro'),
+        label: t('aboutEcho'),
         click() {
           window.sendTo('main', 'showAbout')
         },
@@ -42,7 +42,7 @@ function getTemplate(): MenuItemConstructorOptions[] {
         type: 'separator',
       },
       {
-        label: t('quitHaro'),
+        label: t('quitEcho'),
         click() {
           window.getWin('main')?.close()
         },
@@ -101,7 +101,7 @@ function getTemplate(): MenuItemConstructorOptions[] {
       {
         label: t('reportIssue'),
         click() {
-          shell.openExternal('https://github.com/liriliri/haro/issues')
+          shell.openExternal('https://github.com/liriliri/echo/issues')
         },
       },
       {
@@ -116,9 +116,9 @@ function getTemplate(): MenuItemConstructorOptions[] {
 
   const template = [tools, help]
   if (isMac) {
-    template.unshift(haro, edit)
+    template.unshift(echo, edit)
   } else {
-    template.unshift(haro)
+    template.unshift(echo)
   }
 
   return template

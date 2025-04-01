@@ -32,7 +32,7 @@ function renderApp() {
   const container: HTMLElement = document.getElementById('app') as HTMLElement
 
   let App = lazy(() => import('./main/App.js') as Promise<any>)
-  let title = 'HARO'
+  let title = 'ECHO'
 
   switch (getUrlParam('page')) {
     case 'terminal':

@@ -57,14 +57,14 @@ export default observer(function App() {
       )}
       {createPortal(
         <LunaModal
-          title={t('aboutHaro')}
+          title={t('aboutEcho')}
           visible={aboutVisible}
           width={400}
           onClose={() => setAboutVisible(false)}
         >
           <div className={Style.about}>
             <img className={Style.icon} src={icon} />
-            <div>HARO</div>
+            <div>ECHO</div>
             <div>
               {t('version')} {HARO_VERSION}
             </div>
