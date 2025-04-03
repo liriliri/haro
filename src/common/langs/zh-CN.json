@@ -99,5 +99,6 @@
   "componentNotSelected": "未选择组件",
   "expandAll": "展开全部",
   "collapseAll": "折叠全部",
-  "showAttr": "显示属性"
+  "showAttr": "显示属性",
+  "killHdcWhenExit": "退出时关闭 HDC"
 }

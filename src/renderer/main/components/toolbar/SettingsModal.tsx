@@ -1,6 +1,7 @@
 import LunaModal from 'luna-modal/react'
 import LunaSetting, {
   LunaSettingButton,
+  LunaSettingCheckbox,
   LunaSettingSelect,
   LunaSettingSeparator,
   LunaSettingTitle,
@@ -55,6 +56,11 @@ export default observer(function SettingsModal(props: IModalProps) {
           options={{
             properties: ['openFile'],
           }}
+        />
+        <LunaSettingCheckbox
+          keyName="killHdcWhenExit"
+          value={store.settings.killHdcWhenExit}
+          description={t('killHdcWhenExit')}
         />
         <LunaSettingButton
           description={t('restartEcho')}

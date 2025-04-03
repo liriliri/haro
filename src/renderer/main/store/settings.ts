@@ -4,17 +4,19 @@ import isUndef from 'licia/isUndef'
 export class Settings {
   theme = 'light'
   hdcPath = ''
+  killHdcWhenExit = true
   constructor() {
     makeObservable(this, {
       theme: observable,
       hdcPath: observable,
+      killHdcWhenExit: observable,
       set: action,
     })
 
     this.init()
   }
   async init() {
-    const names = ['theme', 'hdcPath']
+    const names = ['theme', 'hdcPath', 'killHdcWhenExit']
     for (let i = 0, len = names.length; i < len; i++) {
       const name = names[i]
       const val = await main.getSettingsStore(name)

@@ -23,6 +23,7 @@ import isWindows from 'licia/isWindows'
 import isStrBlank from 'licia/isStrBlank'
 import { getSettingsStore } from './store'
 import { isDev } from 'share/common/util'
+import { app } from 'electron'
 
 const logger = log('hdc')
 
@@ -188,6 +189,13 @@ export async function init() {
   if (hdcPath === 'hdc' || (!isStrBlank(hdcPath) && fs.existsSync(hdcPath))) {
     bin = hdcPath
   }
+
+  app.on('before-quit', async () => {
+    if (settingsStore.get('killHdcWhenExit')) {
+      logger.info('kill hdc')
+      await client.kill()
+    }
+  })
 
   client = Hdc.createClient({
     bin,
