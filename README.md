@@ -8,7 +8,7 @@
 
 <div align="center">
 
-鸿蒙 hdc 桌面应用。
+鸿蒙 HDC 桌面应用。
 
 [![Windows][windows-image]][release-url]
 [![macOS][mac-image]][release-url]
@@ -25,7 +25,7 @@
 
 <img src="https://echo.liriliri.io/screenshot.png" style="width:100%">
 
-ECHO 是一个用于简化对鸿蒙设备操作控制的桌面应用程序，可以看作是 HDC 的图形用户界面。
+[ECHO](https://echo.liriliri.io/) 是一个用于简化对鸿蒙设备操作控制的桌面应用程序，可以看作是 HDC 的图形用户界面。
 
 ## 安装
 
