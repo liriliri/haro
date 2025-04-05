@@ -9,6 +9,7 @@ import * as hdc from './lib/hdc'
 import { setupTitlebar } from 'custom-electron-titlebar/main'
 import log from 'share/common/log'
 import { isDev } from 'share/common/util'
+import * as updater from 'share/main/lib/updater'
 
 if (!isDev()) {
   log.setLevel('info')
@@ -34,4 +35,5 @@ app.on('ready', () => {
   ipc.init()
   main.showWin()
   menu.init()
+  updater.init()
 })

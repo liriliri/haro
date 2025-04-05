@@ -13,13 +13,25 @@ import icon from '../assets/icon.png'
 import Process from './components/process/Process'
 import Shell from './components/shell/Shell'
 import Layout from './components/layout/Layout'
+import Modal from 'luna-modal'
 
 export default observer(function App() {
   const [aboutVisible, setAboutVisible] = useState(false)
 
   useEffect(() => {
-    const showAbout = () => setAboutVisible(true)
-    const offShowAbout = main.on('showAbout', showAbout)
+    const offShowAbout = main.on('showAbout', () => setAboutVisible(true))
+    const offUpdateError = main.on('updateError', () => {
+      Modal.alert(t('updateErr'))
+    })
+    const offUpdateNotAvailable = main.on('updateNotAvailable', () => {
+      Modal.alert(t('updateNotAvailable'))
+    })
+    const offUpdateAvailable = main.on('updateAvailable', async () => {
+      const result = await Modal.confirm(t('updateAvailable'))
+      if (result) {
+        main.openExternal('https://echo.liriliri.io')
+      }
+    })
     return () => {
       offShowAbout()
     }

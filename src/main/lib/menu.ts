@@ -6,6 +6,7 @@ import { t } from '../../common/util'
 import upperCase from 'licia/upperCase'
 import isWindows from 'licia/isWindows'
 import { handleEvent } from 'share/main/lib/util'
+import * as updater from 'share/main/lib/updater'
 
 function getTemplate(): MenuItemConstructorOptions[] {
   const hideMenu = isMac
@@ -35,6 +36,12 @@ function getTemplate(): MenuItemConstructorOptions[] {
         label: t('aboutEcho'),
         click() {
           window.sendTo('main', 'showAbout')
+        },
+      },
+      {
+        label: `${t('checkUpdate')}...`,
+        click() {
+          updater.checkUpdate()
         },
       },
       ...hideMenu,

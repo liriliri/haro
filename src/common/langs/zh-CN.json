@@ -100,5 +100,9 @@
   "expandAll": "展开全部",
   "collapseAll": "折叠全部",
   "showAttr": "显示属性",
-  "killHdcWhenExit": "退出时关闭 HDC"
+  "killHdcWhenExit": "退出时关闭 HDC",
+  "checkUpdate": "检查更新",
+  "updateNotAvailable": "当前没有可用的更新",
+  "updateAvailable": "有可用的更新，是否下载？",
+  "updateErr": "检查更新失败"
 }
