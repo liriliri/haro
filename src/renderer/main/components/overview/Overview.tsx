@@ -83,7 +83,7 @@ export default observer(function Overview() {
   }
 
   return (
-    <div className={className('panel', Style.container)}>
+    <div className={className('panel-with-toolbar', Style.container)}>
       <LunaToolbar className="panel-toolbar">
         <ToolbarIcon
           icon="remote-controller"

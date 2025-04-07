@@ -34,6 +34,9 @@ export default observer(function App() {
     })
     return () => {
       offShowAbout()
+      offUpdateError()
+      offUpdateNotAvailable()
+      offUpdateAvailable()
     }
   }, [])
 
