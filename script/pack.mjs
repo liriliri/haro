@@ -24,6 +24,11 @@ const config = {
   },
   mac: {
     electronLanguages: ['zh_CN', 'en'],
+    target: [
+      {
+        target: 'dmg',
+      },
+    ],
   },
   publish: {
     provider: 'generic',
