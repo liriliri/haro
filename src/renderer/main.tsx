@@ -20,9 +20,6 @@ import 'share/renderer/main.scss'
 import './main.scss'
 import getUrlParam from 'licia/getUrlParam'
 
-if (!isDev()) {
-  log.setLevel('info')
-}
 const logger = log('renderer')
 logger.info('start')
 
