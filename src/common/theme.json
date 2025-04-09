@@ -1,9 +1,9 @@
 {
   "token": {
-    "colorPrimary": "#007aff",
+    "colorPrimary": "#589cf5",
     "colorBgContainer": "#f2f2f2",
     "colorBgContainerDark": "#3c3f41",
     "colorBorder": "#d1d1d1",
-    "colorBorderDark": "#323232"
+    "colorBorderDark": "#464646"
   }
 }
