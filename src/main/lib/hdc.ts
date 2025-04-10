@@ -24,6 +24,7 @@ import isStrBlank from 'licia/isStrBlank'
 import { getSettingsStore } from './store'
 import { isDev } from 'share/common/util'
 import { app } from 'electron'
+import * as window from 'share/main/lib/window'
 
 const logger = log('hdc')
 
@@ -200,6 +201,14 @@ export async function init() {
   client = Hdc.createClient({
     bin,
   })
+  client.trackTargets().then((tracker) => {
+    tracker.on('add', onTargetChange)
+    tracker.on('remove', onTargetChange)
+  })
+  function onTargetChange() {
+    logger.info('target change')
+    setTimeout(() => window.sendTo('main', 'changeTarget'), 2000)
+  }
 
   base.init(client)
   bundle.init(client)

@@ -30,6 +30,7 @@ class Store extends BaseStore {
       isInit: observable,
     })
 
+    this.bindEvent()
     this.init()
   }
   selectTarget = (target: string | ITarget | null) => {
@@ -82,6 +83,9 @@ class Store extends BaseStore {
     await this.refreshTargets()
 
     this.isInit = true
+  }
+  private bindEvent() {
+    main.on('changeTarget', this.refreshTargets)
   }
 }
 
