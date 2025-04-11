@@ -11,9 +11,11 @@ import className from 'licia/className'
 import fileSize from 'licia/fileSize'
 import ToolbarIcon from 'share/renderer/components/ToolbarIcon'
 import LunaToolbar, { LunaToolbarSpace } from 'luna-toolbar/react'
+import PortMappingModal from './PortMappingModal'
 import RemoteControllerModal from './RemoteControllerModal'
 
 export default observer(function Overview() {
+  const [portModalVisible, setPortModalVisible] = useState(false)
   const [remoteControllerModalVisible, setRemoteControllerModalVisible] =
     useState(false)
   const [isLoading, setIsLoading] = useState(false)
@@ -86,6 +88,12 @@ export default observer(function Overview() {
     <div className={className('panel-with-toolbar', Style.container)}>
       <LunaToolbar className="panel-toolbar">
         <ToolbarIcon
+          icon="bidirection"
+          disabled={!target}
+          title={t('portMapping')}
+          onClick={() => setPortModalVisible(true)}
+        />
+        <ToolbarIcon
           icon="remote-controller"
           disabled={!target}
           title={t('remoteController')}
@@ -100,6 +108,10 @@ export default observer(function Overview() {
         />
       </LunaToolbar>
       {content}
+      <PortMappingModal
+        visible={portModalVisible}
+        onClose={() => setPortModalVisible(false)}
+      />
       <RemoteControllerModal
         visible={remoteControllerModalVisible}
         onClose={() => setRemoteControllerModalVisible(false)}

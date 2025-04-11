@@ -17,6 +17,7 @@ import { shell } from './hdc/base'
 import * as shellHdc from './hdc/shell'
 import * as base from './hdc/base'
 import * as bundle from './hdc/bundle'
+import * as port from './hdc/port'
 import fs from 'fs-extra'
 import path from 'node:path'
 import isWindows from 'licia/isWindows'
@@ -213,6 +214,7 @@ export async function init() {
   base.init(client)
   bundle.init(client)
   shellHdc.init(client)
+  port.init(client)
 
   handleEvent('getTargets', getTargets)
   handleEvent('getOverview', getOverview)

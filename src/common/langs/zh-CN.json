@@ -104,5 +104,10 @@
   "checkUpdate": "检查更新",
   "updateNotAvailable": "当前没有可用的更新",
   "updateAvailable": "有可用的更新，是否下载？",
-  "updateErr": "检查更新失败"
+  "updateErr": "检查更新失败",
+  "portMapping": "端口映射",
+  "portForwarding": "端口转发",
+  "portReversing": "反向代理",
+  "local": "本地",
+  "remote": "远程"
 }

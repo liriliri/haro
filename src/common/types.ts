@@ -64,3 +64,22 @@ export type IpcCreateShell = (connectKey: string) => Promise<string>
 export type IpcWriteShell = (sessionId: string, data: string) => Promise<void>
 export type IpcKillShell = (sessionId: string) => void
 export type IpcDumpWindowHierarchy = (connectKey: string) => Promise<string>
+export type IpcListForwards = (connectKey: string) => Promise<
+  {
+    local: string
+    remote: string
+  }[]
+>
+export type IpcListReverses = IpcListForwards
+export type IpcForward = (
+  connectKey: string,
+  local: string,
+  remote: string
+) => void
+export type IpcReverse = (
+  connectKey: string,
+  remote: string,
+  local: string
+) => void
+export type IpcRemoveForward = IpcForward
+export type IpcRemoveReverse = IpcReverse
