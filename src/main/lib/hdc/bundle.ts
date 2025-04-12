@@ -4,11 +4,12 @@ import {
   IpcCleanBundleData,
   IpcGetBundleInfos,
   IpcGetBundles,
+  IpcGetTopBundle,
   IpcInstallBundle,
   IpcStartBundle,
   IpcStopBundle,
   IpcUninstallBundle,
-} from 'common/types'
+} from '../../../common/types'
 import { Client } from 'hdckit'
 import { handleEvent } from 'share/main/lib/util'
 import { shell } from './base'
@@ -173,6 +174,42 @@ const uninstallBundle: IpcUninstallBundle = async (connectKey, bundleName) => {
   await target.uninstall(bundleName)
 }
 
+const getTopBundle: IpcGetTopBundle = async (connectKey) => {
+  const abilityInfo = await shell(connectKey, 'aa dump -a')
+  const lines = map(abilityInfo.split('\n'), (line) => trim(line))
+
+  let name = ''
+  let pid = 0
+  let state = ''
+  for (let i = 0, len = lines.length; i < len; i++) {
+    const line = lines[i]
+    if (startWith(line, 'process name')) {
+      name = line.slice('process name ['.length, -1)
+    } else if (startWith(line, 'pid')) {
+      const pidMatch = line.match(/pid #(\d+)/)
+      if (pidMatch) {
+        pid = parseInt(pidMatch[1], 10)
+      }
+    } else if (startWith(line, 'state')) {
+      if (line === 'state #FOREGROUND' && !isSystemBundle(name)) {
+        state = 'foreground'
+        break
+      }
+    }
+  }
+  if (state !== 'foreground') {
+    return {
+      name: '',
+      pid: 0,
+    }
+  }
+
+  return {
+    name,
+    pid,
+  }
+}
+
 export async function init(c: Client) {
   client = c
 
@@ -184,4 +221,5 @@ export async function init(c: Client) {
   handleEvent('cleanBundleData', cleanBundleData)
   handleEvent('cleanBundleCache', cleanBundleCache)
   handleEvent('uninstallBundle', uninstallBundle)
+  handleEvent('getTopBundle', getTopBundle)
 }

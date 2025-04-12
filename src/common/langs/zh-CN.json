@@ -109,5 +109,10 @@
   "portForwarding": "端口转发",
   "portReversing": "反向代理",
   "local": "本地",
-  "remote": "远程"
+  "remote": "远程",
+  "webview": "网页",
+  "inspect": "调试",
+  "openWithBrowser": "使用默认浏览器打开",
+  "title": "标题",
+  "type": "类型"
 }

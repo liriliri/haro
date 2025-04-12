@@ -9,6 +9,8 @@ import {
   IpcGetOverview,
   IpcGetProcesses,
   IpcGetTargets,
+  IpcGetTopBundle,
+  IpcGetWebviews,
   IpcInputKey,
   IpcInstallBundle,
   IpcKillShell,
@@ -55,4 +57,6 @@ export default Object.assign(mainObj, {
   reverse: invoke<IpcReverse>('reverse'),
   removeForward: invoke<IpcRemoveForward>('removeForward'),
   removeReverse: invoke<IpcRemoveReverse>('removeReverse'),
+  getTopBundle: invoke<IpcGetTopBundle>('getTopBundle'),
+  getWebviews: invoke<IpcGetWebviews>('getWebviews'),
 })

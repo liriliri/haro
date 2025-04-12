@@ -1,0 +1,17 @@
+.container {
+  overflow: hidden;
+}
+
+.webviews {
+  height: 100%;
+  border: none !important;
+  img {
+    height: 14px;
+    width: 14px;
+    margin: 0;
+    padding: 0;
+    margin-right: 2px;
+    flex-shrink: 0;
+    vertical-align: top;
+  }
+}

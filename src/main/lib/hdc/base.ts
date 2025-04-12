@@ -6,6 +6,8 @@ import log from 'share/common/log'
 import each from 'licia/each'
 import startWith from 'licia/startWith'
 import singleton from 'licia/singleton'
+import toNum from 'licia/toNum'
+import getPort from 'licia/getPort'
 import { handleEvent } from 'share/main/lib/util'
 
 const logger = log('hdcBase')
@@ -77,6 +79,24 @@ const getProcesses = singleton(async (deviceId: string) => {
 
   return processes
 })
+
+export async function forwardTcp(connectKey: string, remote: string) {
+  const target = await client.getTarget(connectKey)
+  const forwards = await target.listForwards()
+
+  for (let i = 0, len = forwards.length; i < len; i++) {
+    const forward = forwards[i]
+    if (forward.remote === remote) {
+      return toNum(forward.local.replace('tcp:', ''))
+    }
+  }
+
+  const port = await getPort()
+  const local = `tcp:${port}`
+  await target.forward(local, remote)
+
+  return port
+}
 
 export async function init(c: Client) {
   client = c

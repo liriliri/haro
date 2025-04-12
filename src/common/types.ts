@@ -83,3 +83,8 @@ export type IpcReverse = (
 ) => void
 export type IpcRemoveForward = IpcForward
 export type IpcRemoveReverse = IpcReverse
+export type IpcGetTopBundle = (connectKey: string) => Promise<{
+  name: string
+  pid: number
+}>
+export type IpcGetWebviews = (connectKey: string, pid: number) => Promise<any[]>

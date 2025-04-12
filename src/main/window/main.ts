@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron'
+import { app, BrowserWindow, session } from 'electron'
 import { getMainStore, getSettingsStore } from '../lib/store'
 import { handleEvent } from 'share/main/lib/util'
 import * as window from 'share/main/lib/window'
@@ -38,6 +38,18 @@ export function showWin() {
   })
 
   window.loadPage(win)
+}
+
+export function init() {
+  session.defaultSession.webRequest.onBeforeSendHeaders(
+    {
+      urls: ['ws://*/*'],
+    },
+    (details, callback) => {
+      delete details.requestHeaders['Origin']
+      callback({ requestHeaders: details.requestHeaders })
+    }
+  )
 }
 
 const initIpc = once(() => {

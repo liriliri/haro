@@ -30,5 +30,7 @@
   "../share/renderer/icon/delete.svg",
   "../share/renderer/icon/expand.svg",
   "../share/renderer/icon/collapse.svg",
-  "../share/renderer/icon/bidirection.svg"
+  "../share/renderer/icon/bidirection.svg",
+  "../share/renderer/icon/debug.svg",
+  "../share/renderer/icon/browser.svg"
 ]
