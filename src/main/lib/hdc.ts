@@ -132,7 +132,7 @@ const inputKey: IpcInputKey = async function (connectKey, keyCode) {
 }
 
 const screencap: IpcScreencap = async function (connectKey) {
-  const name = 'haro_screen.jpeg'
+  const name = 'echo_screen.jpeg'
   const p = `/data/local/tmp/${name}`
   await shell(connectKey, [`rm -r ${p}`, `snapshot_display -i 0 -f ${p}`])
 
@@ -147,7 +147,7 @@ const screencap: IpcScreencap = async function (connectKey) {
 const dumpWindowHierarchy: IpcDumpWindowHierarchy = async function (
   connectKey
 ) {
-  const name = 'haro_layout.json'
+  const name = 'echo_layout.json'
   const p = `/data/local/tmp/${name}`
   await shell(connectKey, [`rm -r ${p}`, `uitest dumpLayout -p ${p}`])
 

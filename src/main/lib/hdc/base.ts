@@ -28,14 +28,14 @@ export async function shell(
   const target = await client.getTarget(connectKey)
   const cmds: string[] = isStr(cmd) ? [cmd] : cmd
 
-  const connection = await target.shell(cmds.join('\necho "haro_separator"\n'))
+  const connection = await target.shell(cmds.join('\necho "echo_separator"\n'))
   const output = (await connection.readAll()).toString()
 
   if (cmds.length === 1) {
     return trim(output)
   }
 
-  return map(output.split('haro_separator'), (val) => trim(val))
+  return map(output.split('echo_separator'), (val) => trim(val))
 }
 
 const getProcesses = singleton(async (deviceId: string) => {

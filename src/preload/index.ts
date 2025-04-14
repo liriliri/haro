@@ -11,5 +11,5 @@ declare global {
   const main: typeof mainObj
   const preload: typeof preloadObj
   const node: typeof nodeObj
-  const HARO_VERSION: string
+  const ECHO_VERSION: string
 }

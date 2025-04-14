@@ -85,7 +85,7 @@ export default observer(function App() {
             <img className={Style.icon} src={icon} />
             <div>ECHO</div>
             <div>
-              {t('version')} {HARO_VERSION}
+              {t('version')} {ECHO_VERSION}
             </div>
           </div>
         </LunaModal>,
