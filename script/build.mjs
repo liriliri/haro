@@ -22,6 +22,7 @@ if (isWindows) {
 } else {
   await fs.copy('hdc/mac', 'dist/hdc')
 }
+await fs.copy('uitestkit_sdk', 'dist/uitestkit_sdk')
 cd('dist')
 
 await fs.writeJson('package.json', pkg, {

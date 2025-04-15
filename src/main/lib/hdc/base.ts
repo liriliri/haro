@@ -8,6 +8,7 @@ import startWith from 'licia/startWith'
 import singleton from 'licia/singleton'
 import toNum from 'licia/toNum'
 import getPort from 'licia/getPort'
+import types from 'licia/types'
 import { handleEvent } from 'share/main/lib/util'
 
 const logger = log('hdcBase')
@@ -102,4 +103,17 @@ export async function init(c: Client) {
   client = c
 
   handleEvent('getProcesses', getProcesses)
+}
+
+const targetStore: types.PlainObj<any> = {}
+
+export function getTargetStore(connectKey: string, key: string) {
+  return targetStore[connectKey] && targetStore[connectKey][key]
+}
+
+export function setTargetStore(connectKey: string, key: string, value: any) {
+  if (!targetStore[connectKey]) {
+    targetStore[connectKey] = {}
+  }
+  targetStore[connectKey][key] = value
 }

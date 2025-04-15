@@ -1,5 +1,4 @@
 import {
-  IpcDumpWindowHierarchy,
   IpcGetOverview,
   IpcGetTargets,
   IpcInputKey,
@@ -11,7 +10,6 @@ import log from 'share/common/log'
 import map from 'licia/map'
 import startWith from 'licia/startWith'
 import trim from 'licia/trim'
-import each from 'licia/each'
 import os from 'node:os'
 import { shell } from './hdc/base'
 import * as shellHdc from './hdc/shell'
@@ -19,6 +17,7 @@ import * as base from './hdc/base'
 import * as bundle from './hdc/bundle'
 import * as port from './hdc/port'
 import * as webview from './hdc/webview'
+import * as uitest from './hdc/uitest'
 import fs from 'fs-extra'
 import path from 'node:path'
 import isWindows from 'licia/isWindows'
@@ -144,41 +143,6 @@ const screencap: IpcScreencap = async function (connectKey) {
   return buf.toString('base64')
 }
 
-const dumpWindowHierarchy: IpcDumpWindowHierarchy = async function (
-  connectKey
-) {
-  const name = 'echo_layout.json'
-  const p = `/data/local/tmp/${name}`
-  await shell(connectKey, [`rm -r ${p}`, `uitest dumpLayout -p ${p}`])
-
-  const target = client.getTarget(connectKey)
-  const dest = path.resolve(os.tmpdir(), name)
-  await target.recvFile(p, dest)
-  const data = await fs.readFile(dest, 'utf8')
-  const json = JSON.parse(data)
-
-  return toHierarchyXml(json)
-}
-
-function toHierarchyXml(json: any) {
-  const { attributes, children } = json
-  let xml = ''
-
-  const tagName = attributes.type
-  delete attributes.type
-  xml += `<${tagName || 'Layout'}`
-  each(attributes, (val, key) => {
-    xml += ` ${key}="${val}"`
-  })
-  xml += '>'
-
-  each(children, (child) => {
-    xml += toHierarchyXml(child)
-  })
-
-  return xml + `</${tagName || 'Layout'}>`
-}
-
 export async function init() {
   logger.info('init')
 
@@ -216,11 +180,11 @@ export async function init() {
   bundle.init(client)
   shellHdc.init(client)
   port.init(client)
+  uitest.init(client)
   webview.init()
 
   handleEvent('getTargets', getTargets)
   handleEvent('getOverview', getOverview)
   handleEvent('inputKey', inputKey)
   handleEvent('screencap', screencap)
-  handleEvent('dumpWindowHierarchy', dumpWindowHierarchy)
 }

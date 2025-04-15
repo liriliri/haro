@@ -9,7 +9,7 @@ const config = {
     output: `../release/${pkg.version}`,
   },
   files: ['main', 'preload', 'renderer', 'hdc'],
-  asarUnpack: ['hdc/**/*'],
+  asarUnpack: ['hdc/**/*', 'uitestkit_sdk/**/*'],
   artifactName: '${productName}-${version}-${os}-${arch}.${ext}',
   nsis: {
     allowToChangeInstallationDirectory: true,
