@@ -2,6 +2,7 @@ import { app, BrowserWindow, session } from 'electron'
 import { getMainStore, getSettingsStore } from '../lib/store'
 import { handleEvent } from 'share/main/lib/util'
 import * as window from 'share/main/lib/window'
+import * as screencast from './screencast'
 import log from 'share/common/log'
 import once from 'licia/once'
 
@@ -62,4 +63,6 @@ const initIpc = once(() => {
     settingsStore.set(name, val)
   })
   handleEvent('getSettingsStore', (name) => settingsStore.get(name))
+  handleEvent('showScreencast', () => screencast.showWin())
+  handleEvent('closeScreencast', () => screencast.closeWin())
 })

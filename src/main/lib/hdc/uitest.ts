@@ -1,12 +1,17 @@
-import { Client } from 'hdckit'
+import { Client, UiDriver } from 'hdckit'
 import each from 'licia/each'
-import { IpcDumpWindowHierarchy } from '../../../common/types'
+import * as window from 'share/main/lib/window'
+import {
+  IpcDumpWindowHierarchy,
+  IpcStartCaptureScreen,
+  IpcStopCaptureScreen,
+} from '../../../common/types'
 import { getTargetStore, setTargetStore } from './base'
 import { handleEvent, resolveUnpack } from 'share/main/lib/util'
 
 let client: Client
 
-async function getUiDriver(connectKey: string) {
+async function getUiDriver(connectKey: string): Promise<UiDriver> {
   let uiDriver = getTargetStore(connectKey, 'uiDriver')
   if (!uiDriver) {
     const target = await client.getTarget(connectKey)
@@ -46,8 +51,23 @@ function toHierarchyXml(json: any) {
   return xml + `</${tagName || 'Layout'}>`
 }
 
+const startCaptureScreen: IpcStartCaptureScreen = async function (connectKey) {
+  const uiDriver = await getUiDriver(connectKey)
+  await stopCaptureScreen(connectKey)
+  uiDriver.startCaptureScreen(function (image) {
+    window.sendTo('screencast', 'captureScreen', connectKey, image)
+  })
+}
+
+const stopCaptureScreen: IpcStopCaptureScreen = async function (connectKey) {
+  const uiDriver = await getUiDriver(connectKey)
+  uiDriver.stopCaptureScreen()
+}
+
 export function init(c: Client) {
   client = c
 
   handleEvent('dumpWindowHierarchy', dumpWindowHierarchy)
+  handleEvent('startCaptureScreen', startCaptureScreen)
+  handleEvent('stopCaptureScreen', stopCaptureScreen)
 }

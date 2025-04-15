@@ -26,3 +26,13 @@ export const getSettingsStore = memoize(function () {
     killHdcWhenExit: true,
   })
 })
+
+export const getScreencastStore = memoize(function () {
+  return new FileStore(getUserDataPath('data/screencast.json'), {
+    bounds: {
+      width: 430,
+      height: 640,
+    },
+    alwaysOnTop: false,
+  })
+})

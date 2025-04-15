@@ -20,8 +20,11 @@ import {
   IpcRemoveReverse,
   IpcReverse,
   IpcScreencap,
+  IpcSetScreencastAlwaysOnTop,
   IpcStartBundle,
+  IpcStartCaptureScreen,
   IpcStopBundle,
+  IpcStopCaptureScreen,
   IpcUninstallBundle,
   IpcWriteShell,
 } from '../common/types'
@@ -59,4 +62,13 @@ export default Object.assign(mainObj, {
   removeReverse: invoke<IpcRemoveReverse>('removeReverse'),
   getTopBundle: invoke<IpcGetTopBundle>('getTopBundle'),
   getWebviews: invoke<IpcGetWebviews>('getWebviews'),
+  showScreencast: invoke('showScreencast'),
+  closeScreencast: invoke('closeScreencast'),
+  setScreencastAlwaysOnTop: invoke<IpcSetScreencastAlwaysOnTop>(
+    'setScreencastAlwaysOnTop'
+  ),
+  getScreencastStore: invoke<IpcGetStore>('getScreencastStore'),
+  setScreencastStore: invoke<IpcSetStore>('setScreencastStore'),
+  startCaptureScreen: invoke<IpcStartCaptureScreen>('startCaptureScreen'),
+  stopCaptureScreen: invoke<IpcStopCaptureScreen>('stopCaptureScreen'),
 })

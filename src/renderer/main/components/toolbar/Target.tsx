@@ -46,6 +46,12 @@ export default observer(function Target() {
             notify(t('targetRefreshed'), { icon: 'success' })
           }}
         />
+        <ToolbarIcon
+          icon="screencast"
+          disabled={!store.target}
+          title={t('screencast')}
+          onClick={() => main.showScreencast()}
+        />
       </LunaToolbar>
     </>
   )

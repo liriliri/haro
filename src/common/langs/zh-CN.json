@@ -114,5 +114,13 @@
   "inspect": "调试",
   "openWithBrowser": "使用默认浏览器打开",
   "title": "标题",
-  "type": "类型"
+  "type": "类型",
+  "screencast": "投屏",
+  "power": "电源",
+  "volumeUp": "增加音量",
+  "volumeDown": "减小音量",
+  "home": "主界面",
+  "back": "返回",
+  "alwaysOnTop": "置顶",
+  "fullscreen": "全屏"
 }

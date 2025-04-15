@@ -32,5 +32,9 @@
   "../share/renderer/icon/collapse.svg",
   "../share/renderer/icon/bidirection.svg",
   "../share/renderer/icon/debug.svg",
-  "../share/renderer/icon/browser.svg"
+  "../share/renderer/icon/browser.svg",
+  "../share/renderer/icon/screencast.svg",
+  "../share/renderer/icon/camera.svg",
+  "../share/renderer/icon/pin.svg",
+  "../share/renderer/icon/fullscreen.svg"
 ]
