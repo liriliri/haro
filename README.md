@@ -33,7 +33,7 @@
 
 ## 功能
 
-<img src="https://aya.liriliri.io/screenshot.png" style="width:100%">
+<img src="https://echo.liriliri.io/screenshot.png" style="width:100%">
 
 * 应用管理
 * 进程监控
