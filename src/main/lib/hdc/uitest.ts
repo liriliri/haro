@@ -11,6 +11,7 @@ import {
 } from '../../../common/types'
 import { getTargetStore, setTargetStore } from './base'
 import { handleEvent, resolveUnpack } from 'share/main/lib/util'
+import { app } from 'electron'
 
 let client: Client
 
@@ -22,6 +23,8 @@ async function getUiDriver(connectKey: string): Promise<UiDriver> {
       resolveUnpack('uitestkit_sdk/uitest_agent_v1.1.0'),
       '1.1.0'
     )
+    await uiDriver.stop()
+    app.on('before-quit', () => uiDriver.stop())
     setTargetStore(connectKey, 'uiDriver', uiDriver)
   }
   return uiDriver
