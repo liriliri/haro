@@ -33,9 +33,14 @@ export function showWin() {
     menu: true,
   })
 
-  win.on('close', () => {
-    win?.hide()
-    app.quit()
+  win.on('close', (e) => {
+    const screencastWin = window.getWin('screencast')
+    if (screencastWin && screencastWin.isVisible()) {
+      e.preventDefault()
+      win?.hide()
+    } else {
+      app.quit()
+    }
   })
 
   window.loadPage(win)

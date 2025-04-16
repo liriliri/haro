@@ -45,3 +45,4 @@
 * [licia](https://github.com/liriliri/licia): ECHO 使用的工具库。
 * [luna](https://github.com/liriliri/luna): ECHO 使用的 UI 库。
 * [vivy](https://github.com/liriliri/vivy): 图标生成工具。
+* [hdckit](https://github.com/liriliri/hdckit)：基于 Node.js 实现的鸿蒙 HDC 客户端。
