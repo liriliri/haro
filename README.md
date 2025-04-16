@@ -23,7 +23,7 @@
 [release-url]: https://github.com/liriliri/echo/releases
 [license-image]: https://img.shields.io/github/license/liriliri/echo?style=flat-square
 
-<img src="https://echo.liriliri.io/screenshot.png" style="width:100%">
+<img src="https://echo.liriliri.io/screencast.png" style="width:100%">
 
 [ECHO](https://echo.liriliri.io/) 是一个用于简化对鸿蒙设备操作控制的桌面应用程序，可以看作是 HDC 的图形用户界面。
 
@@ -32,6 +32,8 @@
 点击[这里](https://github.com/liriliri/echo/releases/)下载并安装 ECHO，支持 Windows x64 和 Mac arm64 平台。
 
 ## 功能
+
+<img src="https://aya.liriliri.io/screenshot.png" style="width:100%">
 
 * 应用管理
 * 进程监控
