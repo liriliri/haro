@@ -25,6 +25,9 @@ import {
   IpcStartCaptureScreen,
   IpcStopBundle,
   IpcStopCaptureScreen,
+  IpcTouchDown,
+  IpcTouchMove,
+  IpcTouchUp,
   IpcUninstallBundle,
   IpcWriteShell,
 } from '../common/types'
@@ -71,4 +74,7 @@ export default Object.assign(mainObj, {
   setScreencastStore: invoke<IpcSetStore>('setScreencastStore'),
   startCaptureScreen: invoke<IpcStartCaptureScreen>('startCaptureScreen'),
   stopCaptureScreen: invoke<IpcStopCaptureScreen>('stopCaptureScreen'),
+  touchDown: invoke<IpcTouchDown>('touchDown'),
+  touchMove: invoke<IpcTouchMove>('touchMove'),
+  touchUp: invoke<IpcTouchUp>('touchUp'),
 })

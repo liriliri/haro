@@ -4,6 +4,8 @@ import ToolbarIcon from 'share/renderer/components/ToolbarIcon'
 import { t } from '../../../common/util'
 import Style from './Toolbar.module.scss'
 import store from '../store'
+import download from 'licia/download'
+import fullscreen from 'licia/fullscreen'
 
 const KEYCODE_HOME = 1
 const KEYCODE_BACK = 2
@@ -12,11 +14,18 @@ const KEYCODE_VOLUME_DOWN = 17
 const KEYCODE_POWER = 18
 
 export default observer(function Toolbar() {
-  const { target } = store
+  const { target, screencastClient } = store
 
-  async function captureScreenshot() {}
+  async function captureScreenshot() {
+    const canvas = screencastClient.canvas
+    const dataUrl = canvas.toDataURL('image/png')
+    const blob = await fetch(dataUrl).then((res) => res.blob())
+    download(blob, 'screenshot.png', 'image/png')
+  }
 
-  async function toggleFullscreen() {}
+  async function toggleFullscreen() {
+    fullscreen.toggle(screencastClient.canvas)
+  }
 
   function inputKey(keyCode: number) {
     return () => main.inputKey(target.key, keyCode)

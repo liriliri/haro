@@ -5,6 +5,9 @@ import {
   IpcDumpWindowHierarchy,
   IpcStartCaptureScreen,
   IpcStopCaptureScreen,
+  IpcTouchDown,
+  IpcTouchMove,
+  IpcTouchUp,
 } from '../../../common/types'
 import { getTargetStore, setTargetStore } from './base'
 import { handleEvent, resolveUnpack } from 'share/main/lib/util'
@@ -64,10 +67,28 @@ const stopCaptureScreen: IpcStopCaptureScreen = async function (connectKey) {
   uiDriver.stopCaptureScreen()
 }
 
+const touchDown: IpcTouchDown = async function (connectKey, x, y) {
+  const uiDriver = await getUiDriver(connectKey)
+  await uiDriver.touchDown(x, y)
+}
+
+const touchMove: IpcTouchMove = async function (connectKey, x, y) {
+  const uiDriver = await getUiDriver(connectKey)
+  await uiDriver.touchMove(x, y)
+}
+
+const touchUp: IpcTouchUp = async function (connectKey, x, y) {
+  const uiDriver = await getUiDriver(connectKey)
+  await uiDriver.touchUp(x, y)
+}
+
 export function init(c: Client) {
   client = c
 
   handleEvent('dumpWindowHierarchy', dumpWindowHierarchy)
   handleEvent('startCaptureScreen', startCaptureScreen)
   handleEvent('stopCaptureScreen', stopCaptureScreen)
+  handleEvent('touchDown', touchDown)
+  handleEvent('touchMove', touchMove)
+  handleEvent('touchUp', touchUp)
 }
