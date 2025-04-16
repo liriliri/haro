@@ -22,6 +22,11 @@ export default class ScreencastClient {
     const { connectKey } = this
     await main.stopCaptureScreen(connectKey)
     await main.startCaptureScreen(connectKey)
+    setTimeout(() => {
+      if (!this.readiness.isReady('captureScreen')) {
+        this.start()
+      }
+    }, 5000)
   }
   destroy() {
     main.stopCaptureScreen(this.connectKey)
