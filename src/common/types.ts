@@ -94,3 +94,4 @@ export type IpcStopCaptureScreen = (connectKey: string) => void
 export type IpcTouchDown = (connectKey: string, x: number, y: number) => void
 export type IpcTouchMove = IpcTouchDown
 export type IpcTouchUp = IpcTouchDown
+export type IpcInputText = (connectKey: string, text: string) => Promise<void>

@@ -3,6 +3,7 @@ import each from 'licia/each'
 import * as window from 'share/main/lib/window'
 import {
   IpcDumpWindowHierarchy,
+  IpcInputText,
   IpcStartCaptureScreen,
   IpcStopCaptureScreen,
   IpcTouchDown,
@@ -11,7 +12,6 @@ import {
 } from '../../../common/types'
 import { getTargetStore, setTargetStore } from './base'
 import { handleEvent, resolveUnpack } from 'share/main/lib/util'
-import { app } from 'electron'
 
 let client: Client
 
@@ -24,7 +24,6 @@ async function getUiDriver(connectKey: string): Promise<UiDriver> {
       '1.1.0'
     )
     await uiDriver.stop()
-    app.on('before-quit', () => uiDriver.stop())
     setTargetStore(connectKey, 'uiDriver', uiDriver)
   }
   return uiDriver
@@ -93,6 +92,11 @@ const touchUp: IpcTouchUp = async function (connectKey, x, y) {
   await uiDriver.touchUp(x, y)
 }
 
+const inputText: IpcInputText = async function (connectKey, text) {
+  const uiDriver = await getUiDriver(connectKey)
+  await uiDriver.inputText(text)
+}
+
 export function init(c: Client) {
   client = c
 
@@ -102,4 +106,5 @@ export function init(c: Client) {
   handleEvent('touchDown', touchDown)
   handleEvent('touchMove', touchMove)
   handleEvent('touchUp', touchUp)
+  handleEvent('inputText', inputText)
 }

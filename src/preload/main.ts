@@ -12,6 +12,7 @@ import {
   IpcGetTopBundle,
   IpcGetWebviews,
   IpcInputKey,
+  IpcInputText,
   IpcInstallBundle,
   IpcKillShell,
   IpcListForwards,
@@ -77,4 +78,5 @@ export default Object.assign(mainObj, {
   touchDown: invoke<IpcTouchDown>('touchDown'),
   touchMove: invoke<IpcTouchMove>('touchMove'),
   touchUp: invoke<IpcTouchUp>('touchUp'),
+  inputText: invoke<IpcInputText>('inputText'),
 })

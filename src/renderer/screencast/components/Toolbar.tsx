@@ -13,6 +13,7 @@ import download from 'licia/download'
 import toStr from 'licia/toStr'
 import toNum from 'licia/toNum'
 import fullscreen from 'licia/fullscreen'
+import LunaModal from 'luna-modal'
 
 const KEYCODE_HOME = 1
 const KEYCODE_BACK = 2
@@ -36,6 +37,13 @@ export default observer(function Toolbar() {
 
   function inputKey(keyCode: number) {
     return () => main.inputKey(target.key, keyCode)
+  }
+
+  async function inputText() {
+    const text = await LunaModal.prompt(t('inputText'), '')
+    if (text) {
+      main.inputText(target.key, text)
+    }
   }
 
   return (
@@ -74,6 +82,7 @@ export default observer(function Toolbar() {
           title={t('home')}
           onClick={inputKey(KEYCODE_HOME)}
         />
+        <ToolbarIcon icon="text" title={t('inputText')} onClick={inputText} />
         <LunaToolbarSeparator />
         <ToolbarIcon
           icon="camera"
