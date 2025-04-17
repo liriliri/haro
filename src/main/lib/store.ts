@@ -33,6 +33,7 @@ export const getScreencastStore = memoize(function () {
       width: 430,
       height: 640,
     },
+    scale: 1,
     alwaysOnTop: false,
   })
 })

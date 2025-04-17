@@ -89,8 +89,8 @@ export type IpcGetTopBundle = (connectKey: string) => Promise<{
 }>
 export type IpcGetWebviews = (connectKey: string, pid: number) => Promise<any[]>
 export type IpcSetScreencastAlwaysOnTop = (alwaysOnTop: boolean) => void
-export type IpcStartCaptureScreen = (connectKey: string) => void
-export type IpcStopCaptureScreen = IpcStartCaptureScreen
+export type IpcStartCaptureScreen = (connectKey: string, scale: number) => void
+export type IpcStopCaptureScreen = (connectKey: string) => void
 export type IpcTouchDown = (connectKey: string, x: number, y: number) => void
 export type IpcTouchMove = IpcTouchDown
 export type IpcTouchUp = IpcTouchDown

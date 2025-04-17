@@ -3,6 +3,7 @@ import noop from 'licia/noop'
 import Readiness from 'licia/Readiness'
 import { loadImage } from './util'
 import clamp from 'licia/clamp'
+import store from '../store'
 
 export default class ScreencastClient {
   canvas = document.createElement('canvas')
@@ -21,7 +22,7 @@ export default class ScreencastClient {
   async start() {
     const { connectKey } = this
     await main.stopCaptureScreen(connectKey)
-    await main.startCaptureScreen(connectKey)
+    await main.startCaptureScreen(connectKey, store.scale)
     setTimeout(() => {
       if (!this.readiness.isReady('captureScreen')) {
         this.start()
@@ -46,6 +47,7 @@ export default class ScreencastClient {
     if (canvas.height !== height) {
       canvas.height = height
     }
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
     ctx.drawImage(img, 0, 0)
   }
   private getPointer(e: PointerEvent) {
@@ -82,8 +84,8 @@ export default class ScreencastClient {
       1
     )
 
-    const pointerX = Math.round(percentageX * screenWidth)
-    const pointerY = Math.round(percentageY * screenHeight)
+    const pointerX = Math.round((percentageX * screenWidth) / store.scale)
+    const pointerY = Math.round((percentageY * screenHeight) / store.scale)
 
     return { pointerX, pointerY }
   }

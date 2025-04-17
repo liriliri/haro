@@ -54,12 +54,20 @@ function toHierarchyXml(json: any) {
   return xml + `</${tagName || 'Layout'}>`
 }
 
-const startCaptureScreen: IpcStartCaptureScreen = async function (connectKey) {
+const startCaptureScreen: IpcStartCaptureScreen = async function (
+  connectKey,
+  scale
+) {
   const uiDriver = await getUiDriver(connectKey)
   await stopCaptureScreen(connectKey)
-  uiDriver.startCaptureScreen(function (image) {
-    window.sendTo('screencast', 'captureScreen', connectKey, image)
-  })
+  uiDriver.startCaptureScreen(
+    function (image) {
+      window.sendTo('screencast', 'captureScreen', connectKey, image)
+    },
+    {
+      scale,
+    }
+  )
 }
 
 const stopCaptureScreen: IpcStopCaptureScreen = async function (connectKey) {

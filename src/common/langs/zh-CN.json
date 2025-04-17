@@ -122,5 +122,6 @@
   "home": "主界面",
   "back": "返回",
   "alwaysOnTop": "置顶",
-  "fullscreen": "全屏"
+  "fullscreen": "全屏",
+  "scale": "缩放"
 }

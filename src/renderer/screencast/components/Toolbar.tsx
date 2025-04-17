@@ -1,10 +1,17 @@
 import { observer } from 'mobx-react-lite'
-import LunaToolbar, { LunaToolbarSeparator } from 'luna-toolbar/react'
+import LunaToolbar, {
+  LunaToolbarSelect,
+  LunaToolbarSeparator,
+  LunaToolbarSpace,
+  LunaToolbarText,
+} from 'luna-toolbar/react'
 import ToolbarIcon from 'share/renderer/components/ToolbarIcon'
 import { t } from '../../../common/util'
 import Style from './Toolbar.module.scss'
 import store from '../store'
 import download from 'licia/download'
+import toStr from 'licia/toStr'
+import toNum from 'licia/toNum'
 import fullscreen from 'licia/fullscreen'
 
 const KEYCODE_HOME = 1
@@ -33,7 +40,14 @@ export default observer(function Toolbar() {
 
   return (
     <>
-      <LunaToolbar className={Style.container}>
+      <LunaToolbar
+        className={Style.container}
+        onChange={(key, val) => {
+          if (key === 'scale') {
+            store.setScale(toNum(val))
+          }
+        }}
+      >
         <ToolbarIcon
           icon="power"
           title={t('power')}
@@ -79,6 +93,20 @@ export default observer(function Toolbar() {
           icon="fullscreen"
           title={t('fullscreen')}
           onClick={toggleFullscreen}
+        />
+        <LunaToolbarSpace />
+        <LunaToolbarText text={t('scale') + ':'} />
+        <LunaToolbarSelect
+          keyName="scale"
+          value={toStr(store.scale)}
+          options={{
+            '0.5': '0.5',
+            '0.6': '0.6',
+            '0.7': '0.7',
+            '0.8': '0.8',
+            '0.9': '0.9',
+            '1.0': '1',
+          }}
         />
       </LunaToolbar>
     </>

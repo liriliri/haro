@@ -1,18 +1,22 @@
 import BaseStore from 'share/renderer/store/BaseStore'
 import { ITarget } from '../../common/types'
-import { makeObservable, observable, runInAction } from 'mobx'
+import { action, makeObservable, observable, runInAction } from 'mobx'
 import ScreencastClient from './lib/ScreencastClient'
 
 class Store extends BaseStore {
   target!: ITarget
   screencastClient!: ScreencastClient
   alwaysOnTop = false
+  scale = 1
   constructor() {
     super()
 
     makeObservable(this, {
       alwaysOnTop: observable,
       target: observable,
+      scale: observable,
+      setAlwaysOnTop: action,
+      setScale: action,
     })
 
     this.init()
@@ -23,12 +27,17 @@ class Store extends BaseStore {
     main.setScreencastStore('alwaysOnTop', val)
     main.setScreencastAlwaysOnTop(val)
   }
+  setScale(scale: number) {
+    this.scale = scale
+    this.screencastClient.start()
+    main.setScreencastStore('scale', scale)
+  }
   async setTarget(target: ITarget | null) {
     if (target === null) {
       main.closeScreencast()
     } else {
-      this.screencastClient = new ScreencastClient(target.key)
       runInAction(() => (this.target = target))
+      this.screencastClient = new ScreencastClient(this.target.key)
     }
   }
   private async init() {
@@ -38,6 +47,10 @@ class Store extends BaseStore {
     if (alwaysOnTop) {
       main.setScreencastAlwaysOnTop(true)
       runInAction(() => (this.alwaysOnTop = true))
+    }
+    const scale = await main.getScreencastStore('scale')
+    if (scale) {
+      runInAction(() => (this.scale = scale))
     }
   }
   private bindEvent() {
