@@ -10,8 +10,7 @@ jobs:
 
     strategy:
       matrix:
-        include:
-          os: ['windows-latest', 'macos-latest', 'macos-13']
+        os: ['windows-latest', 'macos-latest', 'macos-13']
 
     steps:
     - uses: actions/checkout@v4
