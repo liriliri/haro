@@ -50,8 +50,9 @@ function getTemplate(): MenuItemConstructorOptions[] {
       },
       {
         label: t('quitEcho'),
+        accelerator: isMac ? 'Command+Q' : 'Ctrl+Q',
         click() {
-          window.getWin('main')?.close()
+          app.quit()
         },
       },
     ],
