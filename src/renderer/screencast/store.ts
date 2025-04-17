@@ -37,12 +37,13 @@ class Store extends BaseStore {
       main.closeScreencast()
     } else {
       runInAction(() => (this.target = target))
+      if (this.screencastClient) {
+        this.screencastClient.destroy()
+      }
       this.screencastClient = new ScreencastClient(this.target.key)
     }
   }
   private async init() {
-    const target = await main.getMainStore('target')
-    this.setTarget(target)
     const alwaysOnTop = await main.getScreencastStore('alwaysOnTop')
     if (alwaysOnTop) {
       main.setScreencastAlwaysOnTop(true)
@@ -52,6 +53,8 @@ class Store extends BaseStore {
     if (scale) {
       runInAction(() => (this.scale = scale))
     }
+    const target = await main.getMainStore('target')
+    this.setTarget(target)
   }
   private bindEvent() {
     main.on('changeMainStore', (name: string, val: any) => {
