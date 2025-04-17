@@ -6,16 +6,16 @@ on:
 jobs:
   build:
 
-    runs-on: ${{ matrix.os }}-latest
+    runs-on: ${{ matrix.os }}
 
     strategy:
       matrix:
         include:
-          - os: windows
+          - os: windows-latest
             arch: amd64
-          - os: macos
+          - os: macos-latest
             arch: arm64
-          - os: macos
+          - os: macos-13
             arch: amd64  
 
     steps:
@@ -31,7 +31,7 @@ jobs:
         npm run pack
     - uses: actions/upload-artifact@v4
       with:
-        name: ${{ matrix.os }}-${{ matrix.arch }}
+        name: ${{ matrix.os }}
         path: |
           release/**/*.dmg
           release/**/*.exe
