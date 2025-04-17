@@ -29,7 +29,7 @@ jobs:
         npm run pack
     - uses: actions/upload-artifact@v4
       with:
-        name: ${{ matrix.os }}-${{ matrix.arch }}
+        name: ${{ matrix.os }}
         path: |
           release/**/*.dmg
           release/**/*.exe
