@@ -29,7 +29,7 @@
 
 ## 安装
 
-点击[这里](https://github.com/liriliri/echo/releases/)下载并安装 ECHO，支持 Windows x64 和 Mac arm64 平台。
+点击[这里](https://github.com/liriliri/echo/releases/)下载并安装 ECHO，支持 Windows x64，Mac arm64 平台和 Mac x64 平台。
 
 ## 功能
 

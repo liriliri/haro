@@ -20,7 +20,11 @@ await fs.copy('build', 'dist/build')
 if (isWindows) {
   await fs.copy('hdc/win', 'dist/hdc')
 } else {
-  await fs.copy('hdc/mac', 'dist/hdc')
+  if (process.arch === 'arm64') {
+    await fs.copy('hdc/mac/arm64', 'dist/hdc')
+  } else {
+    await fs.copy('hdc/mac/x64', 'dist/hdc')
+  }
 }
 await fs.copy('uitestkit_sdk', 'dist/uitestkit_sdk')
 cd('dist')

@@ -10,7 +10,11 @@ jobs:
 
     strategy:
       matrix:
-        os: [windows, macos]
+        include:
+          - os: windows
+            arch: amd64
+          - os: macos
+            arch: [arm64, amd64]
 
     steps:
     - uses: actions/checkout@v4
@@ -25,7 +29,7 @@ jobs:
         npm run pack
     - uses: actions/upload-artifact@v4
       with:
-        name: ${{ matrix.os }}
+        name: ${{ matrix.os }}-${{ matrix.arch }}
         path: |
           release/**/*.dmg
           release/**/*.exe

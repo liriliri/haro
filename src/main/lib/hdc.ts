@@ -148,9 +148,15 @@ export async function init() {
 
   let bin = isWindows ? resolveUnpack('hdc/hdc.exe') : resolveUnpack('hdc/hdc')
   if (isDev()) {
-    bin = isWindows
-      ? resolveUnpack('hdc/win/hdc.exe')
-      : resolveUnpack('hdc/mac/hdc')
+    if (isWindows) {
+      bin = resolveUnpack('hdc/win/hdc.exe')
+    } else {
+      if (process.arch === 'arm64') {
+        bin = resolveUnpack('hdc/mac/arm64/hdc')
+      } else {
+        bin = resolveUnpack('hdc/mac/x64/hdc')
+      }
+    }
   }
   const hdcPath = settingsStore.get('hdcPath')
   if (hdcPath === 'hdc' || (!isStrBlank(hdcPath) && fs.existsSync(hdcPath))) {
