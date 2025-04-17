@@ -56,3 +56,4 @@ async function upload(Key) {
 
 await upload(`ECHO-${version}-win-x64.exe`)
 await upload(`ECHO-${version}-mac-arm64.dmg`)
+await upload(`ECHO-${version}-mac-x64.dmg`)

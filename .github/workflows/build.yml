@@ -11,12 +11,7 @@ jobs:
     strategy:
       matrix:
         include:
-          - os: windows-latest
-            arch: amd64
-          - os: macos-latest
-            arch: arm64
-          - os: macos-13
-            arch: amd64  
+          os: ['windows-latest', 'macos-latest', 'macos-13']
 
     steps:
     - uses: actions/checkout@v4
