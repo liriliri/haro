@@ -124,5 +124,6 @@
   "alwaysOnTop": "置顶",
   "fullscreen": "全屏",
   "scale": "缩放",
-  "inputText": "输入文本"
+  "inputText": "输入文本",
+  "hdcCli": "HDC 命令行接口"
 }

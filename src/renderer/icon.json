@@ -37,5 +37,6 @@
   "../share/renderer/icon/camera.svg",
   "../share/renderer/icon/pin.svg",
   "../share/renderer/icon/fullscreen.svg",
-  "../share/renderer/icon/text.svg"
+  "../share/renderer/icon/text.svg",
+  "../share/renderer/icon/terminal.svg"
 ]

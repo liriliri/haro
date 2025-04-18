@@ -26,6 +26,8 @@ import { getSettingsStore } from './store'
 import { isDev } from 'share/common/util'
 import { app } from 'electron'
 import * as window from 'share/main/lib/window'
+import isMac from 'licia/isMac'
+import childProcess from 'node:child_process'
 
 const logger = log('hdc')
 
@@ -143,6 +145,37 @@ const screencap: IpcScreencap = async function (connectKey) {
   return buf.toString('base64')
 }
 
+async function openHdcCli() {
+  let cwd = resolveUnpack('hdc')
+  if (isDev()) {
+    if (isWindows) {
+      cwd = resolveUnpack('hdc/win')
+    } else {
+      if (process.arch === 'arm64') {
+        cwd = resolveUnpack('hdc/mac/arm64')
+      } else {
+        cwd = resolveUnpack('hdc/mac/x64')
+      }
+    }
+  }
+  const hdcPath = settingsStore.get('hdcPath')
+  if (!isStrBlank(hdcPath) && fs.existsSync(hdcPath)) {
+    cwd = path.dirname(hdcPath)
+  }
+
+  if (isMac) {
+    const child = childProcess.spawn('open', ['-a', 'Terminal', cwd], {
+      stdio: 'ignore',
+    })
+    child.unref()
+  } else {
+    const child = childProcess.exec('start cmd', {
+      cwd,
+    })
+    child.unref()
+  }
+}
+
 export async function init() {
   logger.info('init')
 
@@ -193,4 +226,5 @@ export async function init() {
   handleEvent('getOverview', getOverview)
   handleEvent('inputKey', inputKey)
   handleEvent('screencap', screencap)
+  handleEvent('openHdcCli', openHdcCli)
 }

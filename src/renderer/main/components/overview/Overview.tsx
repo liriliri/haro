@@ -88,6 +88,11 @@ export default observer(function Overview() {
     <div className={className('panel-with-toolbar', Style.container)}>
       <LunaToolbar className="panel-toolbar">
         <ToolbarIcon
+          icon="terminal"
+          title={t('hdcCli')}
+          onClick={() => main.openHdcCli()}
+        />
+        <ToolbarIcon
           icon="bidirection"
           disabled={!target}
           title={t('portMapping')}

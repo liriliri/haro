@@ -79,4 +79,5 @@ export default Object.assign(mainObj, {
   touchMove: invoke<IpcTouchMove>('touchMove'),
   touchUp: invoke<IpcTouchUp>('touchUp'),
   inputText: invoke<IpcInputText>('inputText'),
+  openHdcCli: invoke('openHdcCli'),
 })
