@@ -32,7 +32,7 @@ export async function shell(
   const connection = await target.shell(cmds.join('\necho "echo_separator"\n'))
   const output = (await connection.readAll()).toString()
 
-  if (cmds.length === 1) {
+  if (isStr(cmd)) {
     return trim(output)
   }
 
