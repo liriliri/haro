@@ -15,6 +15,15 @@ const logger = log('hdcBase')
 
 let client: Client
 
+export const getPidNames = singleton(async (deviceId: string) => {
+  const processes = await getProcesses(deviceId)
+  const pidNames = {}
+  each(processes, (process) => {
+    pidNames[process.pid] = process.name
+  })
+  return pidNames
+})
+
 export async function shell(connectKey: string, cmd: string): Promise<string>
 export async function shell(
   connectKey: string,

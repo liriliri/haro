@@ -18,6 +18,7 @@ import * as bundle from './hdc/bundle'
 import * as port from './hdc/port'
 import * as webview from './hdc/webview'
 import * as uitest from './hdc/uitest'
+import * as hilog from './hdc/hilog'
 import fs from 'fs-extra'
 import path from 'node:path'
 import isWindows from 'licia/isWindows'
@@ -220,6 +221,7 @@ export async function init() {
   shellHdc.init(client)
   port.init(client)
   uitest.init(client)
+  hilog.init(client)
   webview.init()
 
   handleEvent('getTargets', getTargets)

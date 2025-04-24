@@ -1,6 +1,7 @@
 import {
   IpcCleanBundleCache,
   IpcCleanBundleData,
+  IpcCloseHilog,
   IpcCreateShell,
   IpcDumpWindowHierarchy,
   IpcForward,
@@ -17,8 +18,11 @@ import {
   IpcKillShell,
   IpcListForwards,
   IpcListReverses,
+  IpcOpenHilog,
+  IpcPauseHilog,
   IpcRemoveForward,
   IpcRemoveReverse,
+  IpcResumeHilog,
   IpcReverse,
   IpcScreencap,
   IpcSetScreencastAlwaysOnTop,
@@ -80,4 +84,8 @@ export default Object.assign(mainObj, {
   touchUp: invoke<IpcTouchUp>('touchUp'),
   inputText: invoke<IpcInputText>('inputText'),
   openHdcCli: invoke('openHdcCli'),
+  openHilog: invoke<IpcOpenHilog>('openHilog'),
+  closeHilog: invoke<IpcCloseHilog>('closeHilog'),
+  pauseHilog: invoke<IpcPauseHilog>('pauseHilog'),
+  resumeHilog: invoke<IpcResumeHilog>('resumeHilog'),
 })

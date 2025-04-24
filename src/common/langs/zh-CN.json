@@ -125,5 +125,14 @@
   "fullscreen": "全屏",
   "scale": "缩放",
   "inputText": "输入文本",
-  "hdcCli": "HDC 命令行接口"
+  "hdcCli": "HDC 命令行接口",
+  "hilog": "日志",
+  "standardView": "标准视图",
+  "compactView": "紧凑视图",
+  "tag": "标签",
+  "softWrap": "自动换行",
+  "scrollToEnd": "滚动到底部",
+  "restart": "重启",
+  "pause": "暂停",
+  "resume": "继续"
 }

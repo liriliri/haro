@@ -14,6 +14,7 @@ export default observer(function Panels() {
       'shell',
       'layout',
       'screenshot',
+      'hilog',
       'webview',
     ],
     (panel) => {

@@ -15,6 +15,7 @@ import Shell from './components/shell/Shell'
 import Layout from './components/layout/Layout'
 import Modal from 'luna-modal'
 import Webview from './components/webview/Webview'
+import Hilog from './components/hilog/Hilog'
 
 export default observer(function App() {
   const [aboutVisible, setAboutVisible] = useState(false)
@@ -67,6 +68,9 @@ export default observer(function App() {
             </Panel>
             <Panel panel="screenshot">
               <Screenshot />
+            </Panel>
+            <Panel panel="hilog">
+              <Hilog />
             </Panel>
             <Panel panel="webview">
               <Webview />

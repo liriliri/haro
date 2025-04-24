@@ -38,5 +38,9 @@
   "../share/renderer/icon/pin.svg",
   "../share/renderer/icon/fullscreen.svg",
   "../share/renderer/icon/text.svg",
-  "../share/renderer/icon/terminal.svg"
+  "../share/renderer/icon/terminal.svg",
+  "../share/renderer/icon/soft-wrap.svg",
+  "../share/renderer/icon/scroll-end.svg",
+  "../share/renderer/icon/play.svg",
+  "../share/renderer/icon/pause.svg"
 ]

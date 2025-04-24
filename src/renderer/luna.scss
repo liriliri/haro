@@ -1,4 +1,6 @@
 @use './theme' as theme;
+@use 'sass:meta';
+@use 'sass:map';
 
 .luna-notification {
   padding-top: 40px;
@@ -73,5 +75,33 @@
 .luna-command-palette-list {
   li {
     border-radius: #{theme.$border-radius-x-s}px;
+  }
+}
+
+.luna-logcat {
+  border: none;
+}
+
+$colors: 'blue', 'purple', 'cyan', 'green', 'magenta', 'pink', 'red', 'orange',
+  'yellow', 'volcano', 'geekblue', 'gold', 'lime';
+
+$theme-variables: meta.module-variables(theme);
+@each $color in $colors {
+  @for $i from 6 through 10 {
+    .luna-logcat-color-#{$color}-#{$i} {
+      $variable-name: #{$color}-#{$i};
+      color: map.get($theme-variables, $variable-name);
+    }
+  }
+}
+
+.-theme-with-dark-background {
+  @each $color in $colors {
+    @for $i from 6 through 10 {
+      .luna-logcat-color-#{$color}-#{$i} {
+        $variable-name: #{$color}-#{$i}-dark;
+        color: map.get($theme-variables, $variable-name);
+      }
+    }
   }
 }
