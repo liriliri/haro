@@ -19,7 +19,7 @@ class Store extends BaseStore {
   application = new Application()
   process = new Process()
   layout = new Layout()
-  isInit = false
+  ready = false
   constructor() {
     super()
 
@@ -27,7 +27,7 @@ class Store extends BaseStore {
       targets: observable,
       target: observable,
       panel: observable,
-      isInit: observable,
+      ready: observable,
     })
 
     this.bindEvent()
@@ -82,7 +82,7 @@ class Store extends BaseStore {
     }
     await this.refreshTargets()
 
-    this.isInit = true
+    this.ready = true
   }
   private bindEvent() {
     main.on('changeTarget', this.refreshTargets)

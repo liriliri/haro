@@ -29,7 +29,7 @@ import dateFormat from 'licia/dateFormat'
 import contextMenu from 'share/renderer/lib/contextMenu'
 import LunaModal from 'luna-modal'
 import className from 'licia/className'
-import { isFileDrop, notify } from 'share/renderer/lib/util'
+import { getWindowHeight, isFileDrop, notify } from 'share/renderer/lib/util'
 import { installBundles } from '../../../lib/util'
 
 export default observer(function Application() {
@@ -55,8 +55,9 @@ export default observer(function Application() {
   useEffect(() => {
     refresh()
 
-    function resize() {
-      const height = window.innerHeight - 89
+    async function resize() {
+      const windowHeight = await getWindowHeight()
+      const height = windowHeight - 61
       setListHeight(height)
     }
     resize()

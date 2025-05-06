@@ -13,6 +13,7 @@ import map from 'licia/map'
 import className from 'licia/className'
 import store from '../../store'
 import ToolbarIcon from 'share/renderer/components/ToolbarIcon'
+import { getWindowHeight } from 'share/renderer/lib/util'
 
 export default observer(function Webview() {
   const [webviews, setWebviews] = useState<any[]>([])
@@ -63,8 +64,9 @@ export default observer(function Webview() {
 
     getWebviews()
 
-    function resize() {
-      const height = window.innerHeight - 89
+    async function resize() {
+      const windowHeight = await getWindowHeight()
+      const height = windowHeight - 61
       setListHeight(height)
     }
     resize()

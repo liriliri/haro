@@ -20,6 +20,7 @@ import LunaModal from 'luna-modal'
 import singleton from 'licia/singleton'
 import map from 'licia/map'
 import find from 'licia/find'
+import { getWindowHeight } from 'share/renderer/lib/util'
 
 export default observer(function Process() {
   const [processes, setProcesses] = useState<any[]>([])
@@ -90,8 +91,9 @@ export default observer(function Process() {
     }
     refresh()
 
-    function resize() {
-      const height = window.innerHeight - 89
+    async function resize() {
+      const windowHeight = await getWindowHeight()
+      const height = windowHeight - 61
       setListHeight(height)
     }
     resize()
