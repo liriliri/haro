@@ -36,8 +36,7 @@ export default observer(function Overview() {
       setIsLoading(true)
       const overview = await main.getOverview(target.key)
       setOverview(overview)
-      // eslint-disable-next-line
-    } catch (e) {
+    } catch {
       notify(t('commonErr'), { icon: 'error' })
     }
 

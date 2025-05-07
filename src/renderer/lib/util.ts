@@ -27,8 +27,7 @@ export async function installBundles(connectKey: string, hapPaths?: string[]) {
     try {
       await main.installBundle(connectKey, hapPath!)
       hasSuccess = true
-      // eslint-disable-next-line
-    } catch (e) {
+    } catch {
       notify(t('installBundleErr'), { icon: 'error' })
     }
   }

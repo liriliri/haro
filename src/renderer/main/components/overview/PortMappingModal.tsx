@@ -91,8 +91,7 @@ export default observer(function PortMappingModal(props: IModalProps) {
                 } else {
                   await main.reverse(store.target.key, remote, local)
                 }
-                // eslint-disable-next-line
-              } catch (e) {
+              } catch {
                 notify(t('commonErr'), { icon: 'error' })
                 return
               }
@@ -123,8 +122,7 @@ export default observer(function PortMappingModal(props: IModalProps) {
                     selected.local
                   )
                 }
-                // eslint-disable-next-line
-              } catch (e) {
+              } catch {
                 notify(t('commonErr'), { icon: 'error' })
                 return
               }
