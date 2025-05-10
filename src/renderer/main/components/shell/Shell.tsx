@@ -1,7 +1,5 @@
 import { observer } from 'mobx-react-lite'
-import LunaToolbar, {
-  LunaToolbarSpace,
-} from 'luna-toolbar/react'
+import LunaToolbar, { LunaToolbarSpace } from 'luna-toolbar/react'
 import Term from './Term'
 import LunaTab, { LunaTabItem } from 'luna-tab/react'
 import { t } from '../../../../common/util'
@@ -49,7 +47,6 @@ export default observer(function Shell() {
     setSelectedShell(shell)
   }
 
-  
   function close(id: string) {
     const closedShell = find(shells, (shell) => shell.id === id)
     let closedIdx = idxOf(shells, closedShell)
@@ -63,7 +60,7 @@ export default observer(function Shell() {
       setSelectedShell(newShells[closedIdx])
     }
   }
-  
+
   const tabItems = map(shells, (shell) => {
     return (
       <LunaTabItem
