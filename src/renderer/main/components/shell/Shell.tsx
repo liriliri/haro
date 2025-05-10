@@ -1,6 +1,5 @@
 import { observer } from 'mobx-react-lite'
 import LunaToolbar, {
-  LunaToolbarSeparator,
   LunaToolbarSpace,
 } from 'luna-toolbar/react'
 import Term from './Term'
@@ -16,6 +15,7 @@ import map from 'licia/map'
 import filter from 'licia/filter'
 import LunaCommandPalette from 'luna-command-palette/react'
 import find from 'licia/find'
+import idxOf from 'licia/idxOf'
 import { Terminal } from '@xterm/xterm'
 
 interface IShell {
@@ -49,22 +49,28 @@ export default observer(function Shell() {
     setSelectedShell(shell)
   }
 
-  function close() {
-    let selectedIdx = shells.findIndex((shell) => shell.id === selectedShell.id)
-    const newShells = filter(shells, (shell) => shell.id !== selectedShell.id)
+  
+  function close(id: string) {
+    const closedShell = find(shells, (shell) => shell.id === id)
+    let closedIdx = idxOf(shells, closedShell)
+    const newShells = filter(shells, (shell) => shell.id !== id)
     setShells(newShells)
-    if (selectedIdx >= newShells.length) {
-      selectedIdx = newShells.length - 1
-    }
-    setSelectedShell(newShells[selectedIdx])
-  }
 
+    if (closedShell === selectedShell) {
+      if (closedIdx >= newShells.length) {
+        closedIdx = newShells.length - 1
+      }
+      setSelectedShell(newShells[closedIdx])
+    }
+  }
+  
   const tabItems = map(shells, (shell) => {
     return (
       <LunaTabItem
         key={shell.id}
         id={shell.id}
         title={shell.name}
+        closable={true}
         selected={selectedShell.id === shell.id}
       />
     )
@@ -111,6 +117,7 @@ export default observer(function Shell() {
               setSelectedShell(shell)
             }
           }}
+          onClose={close}
         >
           {tabItems}
         </LunaTab>
@@ -127,13 +134,6 @@ export default observer(function Shell() {
             title={t('shortcut')}
             onClick={() => setCommandPaletteVisible(true)}
             disabled={!target}
-          />
-          <LunaToolbarSeparator />
-          <ToolbarIcon
-            icon="delete"
-            title={t('close')}
-            onClick={close}
-            disabled={!target || shells.length <= 1}
           />
         </LunaToolbar>
       </div>
