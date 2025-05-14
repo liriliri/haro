@@ -1,4 +1,6 @@
 import { DOMParser, MIME_TYPE } from '@xmldom/xmldom'
+import isNumeric from 'licia/isNumeric'
+import trim from 'licia/trim'
 
 export const toPng = async (src: string): Promise<string> => {
   const img = new Image()
@@ -18,4 +20,14 @@ export const toPng = async (src: string): Promise<string> => {
 const domParser = new DOMParser()
 export function xmlToDom(str: string) {
   return domParser.parseFromString(str, MIME_TYPE.XML_TEXT)
+}
+
+export function normalizePort(port: string) {
+  port = trim(port)
+
+  if (isNumeric(port)) {
+    return `tcp:${port}`
+  }
+
+  return port
 }
