@@ -35,8 +35,8 @@ export default observer(function Webview() {
         if (store.panel === 'webview') {
           try {
             const topBundle = await main.getTopBundle(target.key)
+            setTopBundle(topBundle)
             if (topBundle.pid) {
-              setTopBundle(topBundle)
               const webviews = await main.getWebviews(target.key, topBundle.pid)
               setWebviews(
                 map(webviews, (webview: any) => {
@@ -52,6 +52,8 @@ export default observer(function Webview() {
                   }
                 })
               )
+            } else {
+              setWebviews([])
             }
           } catch {
             // ignore
