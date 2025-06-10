@@ -29,7 +29,6 @@ app.on('ready', () => {
   theme.init()
   hdc.init()
   ipc.init()
-  main.init()
   main.showWin()
   menu.init()
   updater.init()
