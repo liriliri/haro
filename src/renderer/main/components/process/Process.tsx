@@ -20,12 +20,13 @@ import LunaModal from 'luna-modal'
 import singleton from 'licia/singleton'
 import map from 'licia/map'
 import find from 'licia/find'
-import { getWindowHeight } from 'share/renderer/lib/util'
+import DataGrid from 'luna-data-grid'
+import { useWindowResize } from 'share/renderer/lib/hooks'
 
 export default observer(function Process() {
   const [processes, setProcesses] = useState<any[]>([])
   const bundlesRef = useRef<any[]>([])
-  const [listHeight, setListHeight] = useState(0)
+  const dataGridRef = useRef<DataGrid>(null)
   const [selected, setSelected] = useState<any>(null)
   const [filter, setFilter] = useState('')
 
@@ -91,21 +92,12 @@ export default observer(function Process() {
     }
     refresh()
 
-    async function resize() {
-      const windowHeight = await getWindowHeight()
-      const height = windowHeight - 61
-      setListHeight(height)
-    }
-    resize()
-
-    window.addEventListener('resize', resize)
-
     return () => {
       destroyed = true
-
-      window.removeEventListener('resize', resize)
     }
   }, [])
+
+  useWindowResize(() => dataGridRef.current?.fit())
 
   async function stop() {
     if (!selected || !has(selected, 'bundleName')) {
@@ -158,9 +150,11 @@ export default observer(function Process() {
         data={processes}
         columns={columns}
         selectable={true}
-        minHeight={listHeight}
-        maxHeight={listHeight}
         uniqueId="pid"
+        onCreate={(dataGrid) => {
+          dataGridRef.current = dataGrid
+          dataGrid.fit()
+        }}
       />
     </div>
   )

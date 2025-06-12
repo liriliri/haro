@@ -29,8 +29,10 @@ import dateFormat from 'licia/dateFormat'
 import contextMenu from 'share/renderer/lib/contextMenu'
 import LunaModal from 'luna-modal'
 import className from 'licia/className'
-import { getWindowHeight, isFileDrop, notify } from 'share/renderer/lib/util'
+import { isFileDrop, notify } from 'share/renderer/lib/util'
 import { installBundles } from '../../../lib/util'
+import DataGrid from 'luna-data-grid'
+import { useWindowResize } from 'share/renderer/lib/hooks'
 
 export default observer(function Application() {
   const [isLoading, setIsLoading] = useState(false)
@@ -38,7 +40,7 @@ export default observer(function Application() {
   const [bundleInfos, setBundleInfos] = useState<IBundleInfo[]>([])
   const [filter, setFilter] = useState('')
   const [dropHighlight, setDropHighlight] = useState(false)
-  const [listHeight, setListHeight] = useState(0)
+  const dataGridRef = useRef<DataGrid>(null)
   const [bundleInfoModalVisible, setBundleInfoModalVisible] = useState(false)
   const [isOpenEffectAnimating, setIsOpenEffectAnimating] = useState(false)
   const [openEffectStyle, setOpenEffectStyle] = useState({
@@ -54,20 +56,8 @@ export default observer(function Application() {
 
   useEffect(() => {
     refresh()
-
-    async function resize() {
-      const windowHeight = await getWindowHeight()
-      const height = windowHeight - 61
-      setListHeight(height)
-    }
-    resize()
-
-    window.addEventListener('resize', resize)
-
-    return () => {
-      window.removeEventListener('resize', resize)
-    }
   }, [])
+  useWindowResize(() => dataGridRef.current?.fit())
 
   async function refresh() {
     if (!target || isLoading) {
@@ -277,10 +267,12 @@ export default observer(function Application() {
               releaseType: info.releaseType,
             }
           })}
-          minHeight={listHeight}
-          maxHeight={listHeight}
           selectable={true}
           uniqueId="bundleName"
+          onCreate={(dataGrid) => {
+            dataGridRef.current = dataGrid
+            dataGrid.fit()
+          }}
         />
       ) : (
         <LunaIconList

@@ -5,7 +5,7 @@ import LunaToolbar, {
   LunaToolbarSpace,
   LunaToolbarText,
 } from 'luna-toolbar/react'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { t } from '../../../../common/util'
 import toEl from 'licia/toEl'
 import LunaDataGrid from 'luna-data-grid/react'
@@ -13,7 +13,8 @@ import map from 'licia/map'
 import className from 'licia/className'
 import store from '../../store'
 import ToolbarIcon from 'share/renderer/components/ToolbarIcon'
-import { getWindowHeight } from 'share/renderer/lib/util'
+import DataGrid from 'luna-data-grid'
+import { useWindowResize } from 'share/renderer/lib/hooks'
 
 export default observer(function Webview() {
   const [webviews, setWebviews] = useState<any[]>([])
@@ -22,7 +23,7 @@ export default observer(function Webview() {
     name: '',
     pid: 0,
   })
-  const [listHeight, setListHeight] = useState(0)
+  const dataGridRef = useRef<DataGrid>(null)
   const [filter, setFilter] = useState('')
 
   const { target } = store
@@ -67,21 +68,12 @@ export default observer(function Webview() {
 
     getWebviews()
 
-    async function resize() {
-      const windowHeight = await getWindowHeight()
-      const height = windowHeight - 61
-      setListHeight(height)
-    }
-    resize()
-
-    window.addEventListener('resize', resize)
-
     return () => {
       destroyed = true
-
-      window.removeEventListener('resize', resize)
     }
   }, [])
+
+  useWindowResize(() => dataGridRef.current?.fit())
 
   return (
     <div className={className('panel-with-toolbar', Style.conatiner)}>
@@ -119,9 +111,11 @@ export default observer(function Webview() {
         columns={columns}
         data={webviews}
         selectable={true}
-        minHeight={listHeight}
-        maxHeight={listHeight}
         uniqueId="id"
+        onCreate={(dataGrid) => {
+          dataGridRef.current = dataGrid
+          dataGrid.fit()
+        }}
       />
     </div>
   )
