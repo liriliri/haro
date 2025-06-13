@@ -7,7 +7,7 @@ import LunaSetting, {
   LunaSettingTitle,
 } from 'luna-setting/react'
 import { t } from '../../../../common/util'
-import Style from './Settings.module.scss'
+import Style from './SettingsModal.module.scss'
 import { createPortal } from 'react-dom'
 import { observer } from 'mobx-react-lite'
 import store from '../../store'
